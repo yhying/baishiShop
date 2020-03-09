@@ -1,15 +1,12 @@
 <template>
 	<view class="content">
-		<Swiper></Swiper>
+		<view class="f-active-color">123</view>
+		<view class="iconfont icon-xiaoxi"></view>
 	</view>
 </template>
 
 <script>
-	import Swiper from '@/components/index/indexSwiper.vue'
 	export default {
-		components:{
-			Swiper
-		},
 		data() {
 			return {
 			}
