@@ -24,15 +24,18 @@
 	export default {
 		data() {
 			return {
-				
+
 			};
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 	.swiper {
 		width: 100%;
 		height: 400rpx;
+	}
+	image {
+		width: 100%;
 	}
 </style>
