@@ -1,7 +1,7 @@
 <template>
 	<view class="Goods" :style="'flex-wrap:'+wrap">
 	<!-- 单个商品组件 -->
-	<view class="GoodItem" v-for="item in goodsList" :style="'width:'+itemWidth" >
+	<view class="GoodItem" v-for="(item,i) in goodsList" :key="i" :style="'width:'+itemWidth" >
 		<image :src="item.imgUrl" mode="" :style="'height:'+itemHeight"></image>
 		<view class="GoodItem-content">
 			<text class='goods-name' :style="'fontSize:'+textSize">{{item.name}}</text>

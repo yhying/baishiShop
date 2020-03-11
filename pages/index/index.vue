@@ -6,18 +6,24 @@
 			</view>
 		</scroll-view>
 		<swiper @change="SwiperChange" :current="tabBarIndex" :style="'height:'+ClientHeight+'px'">
-			<swiper-item v-for="(item,i) in topBar" :key="i">
-				<view class="home-nav">
+			<swiper-item v-for="(item,i) in newTopBar" :key="i">
+				<!-- <view class="home-nav"> -->
 					<!-- 推荐模板 -->
-					<Swiper></Swiper>
-					<Recommend></Recommend>
-					<Card cardTitle="猜你喜欢"></Card>
-					<GoodList></GoodList>
-				</view>
+					<scroll-view scroll-y="true" >
+						<block v-for="(k,i1) in item.data" :key="i1">
+							<Swiper v-if="k.type=='swiperList'" :dataList="k.data"></Swiper>
+							<template v-if="k.type=='recommendList'">
+								<Recommend :dataList="k.data"></Recommend>
+								<Card cardTitle="猜你喜欢"></Card>
+							</template>
+							<GoodList v-if="k.type=='commodityList'" :dataList="k.data" ></GoodList>
+						</block>
+					</scroll-view>
+				<!-- </view> -->
 			</swiper-item>
 		</swiper>
 		<!-- 其他模板 -->
-<!-- 		<Banner></Banner>
+<!-- 				<Banner></Banner>
 		<Icons></Icons>
 		<Card cardTitle="热销爆品"></Card>
 		<Hots></Hots>
@@ -52,39 +58,22 @@
 			return {
 				tabBarIndex: 0,
 				ScrollIndex: 'top0',
-				ClientHeight:0,
-				topBar: [{
-						name: '推荐'
-					},
-					{
-						name: '运动户外'
-					},
-					{
-						name: '服饰内衣'
-					},
-					{
-						name: '鞋靴箱包'
-					},
-					{
-						name: '美妆个护'
-					},
-					{
-						name: '家居数码'
-					},
-					{
-						name: '食品母婴'
-					}
-				]
+				ClientHeight:1000,
+				topBar: [],
+				// 承载数据
+				newTopBar: []
 			}
 		},
 		onLoad() {
 			this.getindexData()
 		},
 		onReady() {
-			const query = uni.createSelectorQuery().in(this);
-			query.select('.home-nav').boundingClientRect(data => {
-				this.ClientHeight=data.height
-			}).exec();
+			// 自定义组件无效,此方法(暂时),无法获取ClientHeight
+			// const query = uni.createSelectorQuery().in(this);
+			// query.select('.home-nav').boundingClientRect(data => {
+			// 	// this.ClientHeight = data.height
+			// 	this.ClientHeight = 1300
+			// }).exec();
 		},
 		methods: {
 			// 监听顶部滑块切换事件
@@ -98,16 +87,31 @@
 				this.ScrollIndex = 'top' + e.detail.current
 			},
 			// 请求首页数据
-			getindexData(){
+			getindexData() {
 				uni.request({
-					url:"http://192.168.1.10:3000/api/index/data",
+					url: "http://192.168.1.10:3000/api/index/data",
 					success: (res) => {
 						console.log(res)
-						// let data = res.data.data;
-						// this.topBar = data.topBar;
-						// this.newTopBar = this.initData(data);
+						let data = res.data.data;
+						this.topBar = data.topBar;
+						this.newTopBar = this.initData(data);
+						console.log(this.newTopBar)
 					}
 				})
+			},
+			initData(res) {
+				let arr = []
+				this.topBar.forEach((item, i) => {
+					let obj = {
+						data: []
+					}
+					if (i == 0) {
+						obj.data = res.data
+						// console.log(res.data)
+					}
+					arr.push(obj)
+				})
+				return arr
 			}
 		}
 	}
