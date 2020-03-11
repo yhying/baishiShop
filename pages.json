@@ -4,20 +4,21 @@
 			"style": {
 				"navigationBarTitleText": "百年奥莱",
 				"navigationBarBackgroundColor": "#FFFFFF"
-				// ,
-				// "app-plus": {
-				// 	"titleNView": {
-				// 		"buttons": [{
-				// 			"float": "left",
-				// 			"fontSrc": "./static/iconfont.ttf",
-				// 			"text": "\ue848"
-				// 		}, {
-				// 			"float": "right",
-				// 			"fontSrc": "./static/iconfont.ttf",
-				// 			"text": "\ue638"
-				// 		}]
-				// 	}
-				// }
+				,
+				"app-plus": {
+					"scrollIndicator":"none",
+					"titleNView": {
+						"buttons": [{
+							"float": "left",
+							"fontSrc": "./static/iconfont.ttf",
+							"text": "\ue848"
+						}, {
+							"float": "right",
+							"fontSrc": "./static/iconfont.ttf",
+							"text": "\ue638"
+						}]
+					}
+				}
 			}
 		},
 		{

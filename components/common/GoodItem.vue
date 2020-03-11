@@ -1,10 +1,10 @@
 <template>
-	<view class="Goods">
+	<view class="Goods" :style="'flex-wrap:'+wrap">
 	<!-- 单个商品组件 -->
-	<view class="GoodItem" v-for="item in goodsList">
-		<image :src="item.imgUrl" mode=""></image>
+	<view class="GoodItem" v-for="item in goodsList" :style="'width:'+itemWidth" >
+		<image :src="item.imgUrl" mode="" :style="'height:'+itemHeight"></image>
 		<view class="GoodItem-content">
-			<text class='goods-name'>{{item.name}}</text>
+			<text class='goods-name' :style="'fontSize:'+textSize">{{item.name}}</text>
 			<view>
 				<text class='pprice'>¥{{item.pprice}}</text>
 				<text class='oprice'>¥{{item.oprice}}</text>
@@ -18,7 +18,31 @@
 <script>
 	export default {
 		props: {
-			goodsList: Array
+			goodsList: Array,
+			itemWidth:{
+				type:String,
+				default(){
+					return '374rpx'
+				}
+			},
+			itemHeight:{
+				type:String,
+				default(){
+					return '375rpx'
+				}
+			},
+			wrap:{
+				type:String,
+				default(){
+					return 'wrap'
+				}
+			},
+			textSize:{
+				type:String,
+				default(){
+					return '30rpx'
+				}
+			}
 		}
 	}
 </script>
@@ -27,17 +51,17 @@
 	.Goods {
 		display: flex;
 		justify-content: space-between;
-		flex-wrap: wrap;
+		/* flex-wrap: wrap; */
 	}
 
 	.GoodItem {
-		width: 374rpx;
+		/* width: 374rpx; */
 		padding-bottom: 20rpx;
 	}
 
 	.GoodItem>image {
 		width: 100%;
-		height: 375rpx;
+		/* height: 375rpx; */
 	}
 
 	.GoodItem-content {
@@ -53,7 +77,7 @@
 		color: #333333;
 		word-break: break-all;
 		padding: 6rpx 20rpx;
-		font-size: 30rpx;
+		/* font-size: 30rpx; */
 	}
 
 	.oprice {
