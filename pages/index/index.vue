@@ -8,22 +8,22 @@
 		<swiper @change="SwiperChange" :current="tabBarIndex" :style="'height:'+ClientHeight+'px'">
 			<swiper-item v-for="(item,i) in newTopBar" :key="i">
 				<!-- <view class="home-nav"> -->
-					<!-- 推荐模板 -->
-					<scroll-view scroll-y="true" >
-						<block v-for="(k,i1) in item.data" :key="i1">
-							<Swiper v-if="k.type=='swiperList'" :dataList="k.data"></Swiper>
-							<template v-if="k.type=='recommendList'">
-								<Recommend :dataList="k.data"></Recommend>
-								<Card cardTitle="猜你喜欢"></Card>
-							</template>
-							<GoodList v-if="k.type=='commodityList'" :dataList="k.data" ></GoodList>
-						</block>
-					</scroll-view>
+				<!-- 推荐模板 -->
+				<scroll-view scroll-y="true" :style="'height:'+ClientHeight+'px;'">
+					<block v-for="(k,i1) in item.data" :key="i1">
+						<Swiper v-if="k.type=='swiperList'" :dataList="k.data"></Swiper>
+						<template v-if="k.type=='recommendList'">
+							<Recommend :dataList="k.data"></Recommend>
+							<Card cardTitle="猜你喜欢"></Card>
+						</template>
+						<GoodList v-if="k.type=='commodityList'" :dataList="k.data"></GoodList>
+					</block>
+				</scroll-view>
 				<!-- </view> -->
 			</swiper-item>
 		</swiper>
 		<!-- 其他模板 -->
-<!-- 				<Banner></Banner>
+		<!-- 				<Banner></Banner>
 		<Icons></Icons>
 		<Card cardTitle="热销爆品"></Card>
 		<Hots></Hots>
@@ -58,7 +58,7 @@
 			return {
 				tabBarIndex: 0,
 				ScrollIndex: 'top0',
-				ClientHeight:1000,
+				ClientHeight:0,
 				topBar: [],
 				// 承载数据
 				newTopBar: []
@@ -74,6 +74,12 @@
 			// 	// this.ClientHeight = data.height
 			// 	this.ClientHeight = 1300
 			// }).exec();
+			// 获取系统高度
+			uni.getSystemInfo({
+				success: (res) => {
+					this.ClientHeight=res.windowHeight-uni.upx2px(80)
+				}
+			})
 		},
 		methods: {
 			// 监听顶部滑块切换事件
@@ -119,6 +125,10 @@
 
 <style scoped>
 	.scroll-content {
+		/* 		position: fixed;
+		top:80rpx;
+		left: 0;
+		right: 0; */
 		width: 100%;
 		height: 80rpx;
 		white-space: nowrap;
