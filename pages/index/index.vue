@@ -48,6 +48,7 @@
 </template>
 
 <script>
+	import $http from '@/common/api/request.js'
 	import Swiper from '@/components/index/indexSwiper.vue'
 	import Recommend from '@/components/index/Recommend.vue'
 	import Card from '@/components/common/Card.vue'
@@ -126,7 +127,13 @@
 			// 监听上拉加载
 			loadmore(index) {
 				this.newTopBar[index].loadText = '加载中...';
+				uni.showLoading({
+				    title: '加载中'
+				});
 				this.getindexOtherData(() => {
+					setTimeout(function () {
+					    uni.hideLoading();
+					}, 1000);
 					this.newTopBar[index].loadText = '上拉加载更多...';
 				})
 			},
@@ -150,15 +157,17 @@
 			 */
 			// 请求首页数据
 			getindexData() {
-				uni.request({
-					url: "http://192.168.1.10:3000/api/index/data",
-					success: (res) => {
-						// console.log(res)
-						let data = res.data.data;
-						this.topBar = data.topBar;
-						this.newTopBar = this.initData(data);
-						// console.log(this.newTopBar)
-					}
+				$http.request({
+					url: '/index/data',
+
+				}).then((res) => {
+					this.topBar = res.topBar;
+					this.newTopBar = this.initData(res);
+				}).catch(() => {
+					uni.showToast({
+						title: '请求失败',
+						icon: 'none'
+					})
 				})
 			},
 			// 其他模板首页数据
@@ -166,24 +175,15 @@
 				let index = this.tabBarIndex
 				let topBarid = this.topBar[index].id
 				console.log(this.newTopBar)
-				let pageId = Math.ceil(this.newTopBar[index].data.length / 5) + 1; 
-				uni.request({
-					// url: "http://192.168.1.10:3000/api/index/"+ topBarid +"/data/"+pageId, 
-					url: `http://192.168.1.10:3000/api/index/${topBarid}/data/${pageId}`,
-					/* ES6*/
-					success: (res) => {
-						console.log(res.statusCode)
-						if (res.statusCode != 200) {
-							return;
-						} else {
-							let data = res.data.data;
-							this.newTopBar[index].data = [...this.newTopBar[index].data, ...data]
-						}
-					},
+				let pageId = Math.ceil(this.newTopBar[index].data.length / 5) + 1;
+				$http.request({
+					url: `/index/${topBarid}/data/${pageId}`  	/* ES6*/
+				}).then(res => {
+					this.newTopBar[index].data = [...this.newTopBar[index].data, ...res]
 				})
 				// 请求结束后，关上loadding
 				this.newTopBar[index].loadding = 'last'
-				if(typeof callback==='function'){
+				if (typeof callback === 'function') {
 					callback();
 				}
 			}
