@@ -37,9 +37,7 @@
 					<view v-else>
 						暂无数据...
 					</view>
-					<view class="loadText f-color">
-						{{item.loadText}}
-					</view>
+					<uni-load-more @clickLoadMore="loadmore(i)" :status="status" iconType="auto"></uni-load-more>
 				</scroll-view>
 				<!-- </view> -->
 			</swiper-item>
@@ -48,6 +46,7 @@
 </template>
 
 <script>
+	import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 	import $http from '@/common/api/request.js'
 	import Swiper from '@/components/index/indexSwiper.vue'
 	import Recommend from '@/components/index/Recommend.vue'
@@ -66,13 +65,15 @@
 			Banner,
 			Icons,
 			Hots,
-			Shop
+			Shop,
+			uniLoadMore
 		},
 		data() {
 			return {
 				tabBarIndex: 0,
 				ScrollIndex: 'top0',
 				ClientHeight: 0,
+				status: 'more',
 				topBar: [],
 				// 承载数据
 				newTopBar: []
@@ -95,6 +96,15 @@
 				}
 			})
 		},
+		// 监听标题按钮点击事件
+		onNavigationBarButtonTap(e){
+			console.log(e)
+			if(e.float=='left'){
+				uni.navigateTo({
+				    url: '../search/search'
+				})
+			}
+		},
 		methods: {
 			// 监听顶部滑块切换事件
 			tabBarClick(index) {
@@ -114,7 +124,6 @@
 					let obj = {
 						data: [],
 						loadding: 'first',
-						loadText: '上拉加载更多...'
 					}
 					if (i == 0) {
 						obj.data = res.data
@@ -126,16 +135,12 @@
 			},
 			// 监听上拉加载
 			loadmore(index) {
-				this.newTopBar[index].loadText = '加载中...';
-				uni.showLoading({
-				    title: '加载中'
-				});
-				this.getindexOtherData(() => {
-					setTimeout(function () {
-					    uni.hideLoading();
-					}, 1000);
-					this.newTopBar[index].loadText = '上拉加载更多...';
-				})
+				this.status = 'loading'
+				setTimeout(()=> {
+					this.getindexOtherData(() => {
+						this.status = 'more'
+					})
+				}, 2000);
 			},
 			//监听客户端，兼容
 			getClientHeight() {
@@ -177,9 +182,11 @@
 				console.log(this.newTopBar)
 				let pageId = Math.ceil(this.newTopBar[index].data.length / 5) + 1;
 				$http.request({
-					url: `/index/${topBarid}/data/${pageId}`  	/* ES6*/
+					url: `/index/${topBarid}/data/${pageId}` /* ES6*/
 				}).then(res => {
 					this.newTopBar[index].data = [...this.newTopBar[index].data, ...res]
+				}).catch(()=>{
+					this.status = 'nomore'
 				})
 				// 请求结束后，关上loadding
 				this.newTopBar[index].loadding = 'last'
@@ -211,11 +218,5 @@
 	.f-active-color {
 		padding: 10rpx 0;
 		border-bottom: 6rpx solid #49BDFB;
-	}
-
-	.loadText {
-		border-top: 2rpx solid #636263;
-		line-height: 60rpx;
-		text-align: center;
 	}
 </style>
