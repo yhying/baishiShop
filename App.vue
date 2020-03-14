@@ -17,4 +17,11 @@
 	/* @import url("./common/uni.css"); */
 	@import url("common/iconfont.css");
 	@import url("./common/common.css");
+	
+	/* 修改默认样式 */
+	.uni-page-head-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 </style>

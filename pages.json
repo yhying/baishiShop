@@ -52,15 +52,44 @@
 								"text": "搜索",
 								"fontSize":"16px",
 								"color":"#636263",
-								"width":"60px",
-								"align":"center"
+								"width":"60px"
 							}
 						]
 					}
 				}
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/search-List/search-List",
+            "style" : {
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						// "type": "transparent", 
+						"searchInput": {
+							"align":"left",
+							"autoFocus":false,
+							"backgroundColor": "#f7f7f7",
+							"borderRadius": "15px", //输入框圆角
+							"placeholder": "nike",
+							"disabled": false ,
+							"placeholderColor":"#b3b3b3"
+						},
+						"buttons":[
+							{
+								"float":"right",
+								"text": "筛选",
+								"fontSize":"16px",
+								"color":"#636263",
+								"width":"60px"
+							}
+						]
+					}
+				}
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
