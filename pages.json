@@ -73,7 +73,7 @@
 							"backgroundColor": "#f7f7f7",
 							"borderRadius": "15px", //输入框圆角
 							"placeholder": "nike",
-							"disabled": false ,
+							"disabled": true ,
 							"placeholderColor":"#b3b3b3"
 						},
 						"buttons":[

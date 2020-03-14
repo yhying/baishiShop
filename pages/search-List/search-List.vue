@@ -15,6 +15,9 @@
 				
 			}
 		},
+		onNavigationBarButtonTap(e){
+			console.log(e)
+		},
 		methods: {
 			
 		}

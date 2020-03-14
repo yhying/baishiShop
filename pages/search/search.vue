@@ -35,7 +35,7 @@
 			}
 		},
 		onNavigationBarButtonTap(e){
-			// console.log(e)
+			console.log(e)
 			if(e.float=='right'){
 				uni.navigateTo({
 				    url: '../search-List/search-List'
