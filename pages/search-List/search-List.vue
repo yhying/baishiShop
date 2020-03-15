@@ -1,25 +1,36 @@
 <template>
 	<view>
-		<ShopList></ShopList>
+		<ShopList :keyWord="keyWord"></ShopList>
 	</view>
 </template>
 
 <script>
 	import ShopList from '@/components/common/ShopList.vue'
 	export default {
-		components:{
+		components: {
 			ShopList
 		},
 		data() {
 			return {
-				
+				keyWord: ''
 			}
 		},
-		onNavigationBarButtonTap(e){
-			console.log(e)
+		onLoad(e) {
+			this.keyWord = e.keyWord
+			// #ifdef APP-PLUS  
+			var webView = this.$mp.page.$getAppWebview();  
+			webView.setTitleNViewSearchInputText(e.keyWord);
+			// #endif
+		},
+		// 监听点击输入框回退事件
+		onNavigationBarSearchInputClicked() {
+			uni.navigateTo({
+				url: '../search/search',
+				success: () => {}
+			})
 		},
 		methods: {
-			
+
 		}
 	}
 </script>

@@ -4,7 +4,7 @@
 		<view class="search-item f-color">
 			<view class='search-title'>
 				<view class='f-color'>最近搜索</view>
-				<view class="iconfont icon-lajitong"></view>
+				<view class="iconfont icon-lajitong" @tap="Clearhistory"></view>
 			</view>
 			<view v-if='history.length > 0'>
 				<view class="search-name" v-for="(item,index) in history" :key="index">{{item}}</view>
@@ -33,13 +33,14 @@
 			return {
 				// 搜索关键字
 				keyWord: '',
+				// 搜索历史
 				history: []
 			}
 		},
 		onShow() {
 			uni.getStorage({
 				key: 'history_key',
-				success: res => {
+				success: (res) => {
 					this.history = res.data
 				}
 			});
@@ -58,6 +59,7 @@
 			this.keyWord = e.text
 		},
 		methods: {
+			// 搜索方法
 			ToSearch() {
 				if (this.keyWord === '') {
 					uni.showToast({
@@ -66,7 +68,7 @@
 					})
 				} else {
 					uni.navigateTo({
-						url: '../search-List/search-List',
+						url: '../search-List/search-List?keyWord='+this.keyWord,
 						success: () => {
 							this.addSearch()
 						}
@@ -75,18 +77,36 @@
 				// 隐藏键盘
 				uni.hideKeyboard();
 			},
+			// 添加搜索记录方法
 			addSearch() {
-				let idx=this.history.indexOf(this.keyWord)
-				if(idx==-1){
+				let idx = this.history.indexOf(this.keyWord)
+				if (idx == -1) {
 					this.history.unshift(this.keyWord)
-				}else{
-					this.history.splice(idx,1)            /* 删除原有的记录*/
-					this.history.unshift(this.keyWord)    /* 重新追加到前面*/
+				} else {
+					this.history.splice(idx, 1) /* 删除原有的记录*/
+					this.history.unshift(this.keyWord) /* 重新追加到前面*/
 				}
 				uni.setStorage({
 					key: 'history_key',
 					data: this.history
 				});
+			},
+			// 清楚历史记录
+			Clearhistory() {
+				uni.showModal({
+					title:"重要提示",
+					content:'是否要清除搜索记录',
+					cancelText:'取消',
+					confirmText:"确定",
+					success: (res) => {
+						if(res.confirm){
+							uni.removeStorage({
+								key:"history_key"
+							})
+							this.history=[];
+						}
+					}
+				})
 			}
 		}
 	}
@@ -110,6 +130,7 @@
 		background-color: #e1e1e1;
 		margin: 10rpx;
 	}
+
 	.search-end {
 		text-align: center;
 	}

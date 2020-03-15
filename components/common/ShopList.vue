@@ -22,6 +22,11 @@
 			Lines,
 			goodList
 		},
+		props:{
+			keyWord:{
+				type:String
+			}
+		},
 		data() {
 			return {
 				Shopbar: {
