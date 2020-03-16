@@ -11,13 +11,14 @@
 		</view>
 		<Lines />
 		<goodList :dataList="dataList"></goodList>
+		{{orderBy}}
 	</view>
 </template>
 
 <script>
 	import Lines from '@/components/common/Line.vue'
 	import goodList from '@/components/common/GoodList.vue'
-		import $http from '@/common/api/request.js'
+	import $http from '@/common/api/request.js'
 	export default {
 		components: {
 			Lines,
@@ -34,11 +35,13 @@
 					currentindex: 0,
 					data: [{
 							name: '价格',
-							status: 1
+							status: 1,
+							key: 'pprice'
 						},
 						{
 							name: '折扣',
-							status: 0
+							status: 0,
+							key: 'discount'
 						},
 						{
 							name: '品牌',
@@ -49,11 +52,22 @@
 				dataList: []
 			}
 		},
+		computed: {
+			orderBy() {
+				let obj = this.Shopbar.data[this.Shopbar.currentindex]
+				let val = obj.status === 1 ? "asc" : "desc" ;
+				return {
+					[obj.key]:val
+				}
+			}
+		},
 		mounted() {
 			this.getSearch()
 		},
 		methods: {
 			changeTab(index) {
+				//点击排序==》重新请求了数据
+				this.getSearch()
 				let idx = this.Shopbar.currentindex
 				//具体哪一个对象
 				let item = this.Shopbar.data[idx];
@@ -68,15 +82,17 @@
 
 			},
 			// 监听网络请求
-			getSearch(){
+			getSearch() {
 				$http.request({
 					url: '/goods/search',
-					data:{
-						name:this.keyWord,
-						pprice:"desc"
+					data: {
+						name: this.keyWord,
+						// pprice:"desc"
+						...this.orderBy
 					}
 				}).then((res) => {
-					this.dataList=res
+					this.dataList = res
+					console.log(this.dataList)
 				}).catch(() => {
 					uni.showToast({
 						title: '请求失败',

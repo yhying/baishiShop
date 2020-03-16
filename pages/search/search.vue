@@ -7,7 +7,7 @@
 				<view class="iconfont icon-lajitong" @tap="Clearhistory"></view>
 			</view>
 			<view v-if='history.length > 0'>
-				<view class="search-name" v-for="(item,index) in history" :key="index">{{item}}</view>
+				<view class="search-name" v-for="(item,index) in history" :key="index" @tap="Clickhistory(item)">{{item}}</view>
 			</view>
 			<view class="search-end" v-else>暂无搜索记录</view>
 		</view>
@@ -67,13 +67,9 @@
 						icon: 'none'
 					})
 				} else {
-					uni.navigateTo({
-						url: '../search-List/search-List?keyWord='+this.keyWord,
-						success: () => {
-							this.addSearch()
-						}
-					})
+					this.Clickhistory(this.keyWord)
 				}
+				this.addSearch()
 				// 隐藏键盘
 				uni.hideKeyboard();
 			},
@@ -106,6 +102,12 @@
 							this.history=[];
 						}
 					}
+				})
+			},
+			// 点击搜索记录进入商品列表
+			Clickhistory(item){
+				uni.navigateTo({
+					url: '../search-List/search-List?keyWord='+item,
 				})
 			}
 		}
