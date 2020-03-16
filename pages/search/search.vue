@@ -25,6 +25,7 @@
 
 <script>
 	import Lines from '@/components/common/Line.vue'
+	import $http from '@/common/api/request.js'
 	export default {
 		components: {
 			Lines
@@ -71,6 +72,7 @@
 						url: '../search-List/search-List?keyWord='+this.keyWord,
 						success: () => {
 							this.addSearch()
+							this.getSearch()
 						}
 					})
 				}
@@ -106,6 +108,19 @@
 							this.history=[];
 						}
 					}
+				})
+			},
+			// 监听网络请求
+			getSearch(){
+				$http.request({
+					url: '/goods/search',
+				}).then((res) => {
+					console.log(res)
+				}).catch(() => {
+					uni.showToast({
+						title: '请求失败',
+						icon: 'none'
+					})
 				})
 			}
 		}
