@@ -17,14 +17,15 @@
 <script>
 	import Lines from '@/components/common/Line.vue'
 	import goodList from '@/components/common/GoodList.vue'
+		import $http from '@/common/api/request.js'
 	export default {
 		components: {
 			Lines,
 			goodList
 		},
-		props:{
-			keyWord:{
-				type:String
+		props: {
+			keyWord: {
+				type: String
 			}
 		},
 		data() {
@@ -45,40 +46,11 @@
 						}
 					]
 				},
-				dataList: [{
-						id: 1,
-						imgUrl: "../../static/img/commodity1.jpg",
-						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice: "299",
-						oprice: "659",
-						discount: "5.2"
-					},
-					{
-						id: 2,
-						imgUrl: "../../static/img/commodity2.jpg",
-						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice: "299",
-						oprice: "659",
-						discount: "5.2"
-					},
-					{
-						id: 3,
-						imgUrl: "../../static/img/commodity3.jpg",
-						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice: "299",
-						oprice: "659",
-						discount: "5.2"
-					},
-					{
-						id: 4,
-						imgUrl: "../../static/img/commodity4.jpg",
-						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice: "299",
-						oprice: "659",
-						discount: "5.2"
-					}
-				]
+				dataList: []
 			}
+		},
+		mounted() {
+			this.getSearch()
 		},
 		methods: {
 			changeTab(index) {
@@ -94,6 +66,23 @@
 				this.Shopbar.currentindex = index
 				newItem.status = 1;
 
+			},
+			// 监听网络请求
+			getSearch(){
+				$http.request({
+					url: '/goods/search',
+					data:{
+						name:this.keyWord,
+						pprice:"desc"
+					}
+				}).then((res) => {
+					this.dataList=res
+				}).catch(() => {
+					uni.showToast({
+						title: '请求失败',
+						icon: 'none'
+					})
+				})
 			}
 		}
 	}
