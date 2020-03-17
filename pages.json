@@ -22,7 +22,24 @@
 		},
 		{
 			"path": "pages/category/category",
-			"style": {}
+			"style": {
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						// "type": "transparent", 
+						"searchInput": {
+							"align":"left",
+							"autoFocus":false,
+							"backgroundColor": "#f7f7f7",
+							"borderRadius": "15px", //输入框圆角
+							"placeholder": "请输入关键字",
+							"disabled": true ,
+							"placeholderColor":"#b3b3b3"
+						}
+					}
+				}
+			}
 		}, {
 			"path": "pages/car/car",
 			"style": {}
