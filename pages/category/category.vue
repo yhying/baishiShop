@@ -141,6 +141,7 @@
 }
 .right-name{
 	padding:16rpx 0;
+	font-size: 24rpx;
 }
 .right-item image {
 	width: 150rpx;

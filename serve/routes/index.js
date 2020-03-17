@@ -1750,100 +1750,488 @@ router.get('/api/index/2/data/2', function(req, res, next) {
 router.get('/api/goods/search', function(req, res, next) {
 	//desc降序     asc升序
 	//获取对象的key
-	let [goodsName,orderName] = Object.keys(req.query);
+	let [goodsName, orderName] = Object.keys(req.query);
 	//name参数的值
 	let name = req.query.name;
 	//orderName的key的值
 	let order = req.query[orderName];
-	
-	connection.query("select * from goods_search where name like '%"+name+"%' order by "+orderName+" "+order+"", function (error, results, fields) {
-	  if (error) throw error;
-	  // console.log(results)
-	  res.send({
-		  code:"0",
-		  data:results
-	  })
-	});
+
+	connection.query("select * from goods_search where name like '%" + name + "%' order by " + orderName + " " + order +
+		"",
+		function(error, results, fields) {
+			if (error) throw error;
+			// console.log(results)
+			res.send({
+				code: "0",
+				data: results
+			})
+		});
 })
 // 分类接口数据
 router.get('/api/goods/list', function(req, res, next) {
-   res.json({
-	   code:0,
-	   data:[
-		   {
-			   id:1,
-			   name:"家居家纺",
-			   data:[
-				   {
-					   name:"家纺",
-					   list:[
-						   {
-							   id:1,
-							   name:"毛巾/浴巾",
-							   imgUrl:"../../static/img/list1.jpg"
-						   },
-						   {
-							   id:2,
-							   name:"枕头",
-							   imgUrl:"../../static/img/list1.jpg"
-						   }
-					   ]
-				   },
-				   {
-					   name:"生活用品",
-					   list:[
-						   {
-							   id:1,
-							   name:"浴室用品",
-							   imgUrl:"../../static/img/list1.jpg"
-						   },
-						   {
-							   id:2,
-							   name:"洗晒",
-							   imgUrl:"../../static/img/list1.jpg"
-						   }
-					   ]
-				   }
-			   ]
-		   },
-		   {
-			   id:2,
-			   name:"女装",
-			   data:[
-				   {
-					   name:"裙装",
-					   list:[
-						   {
-							   id:1,
-							   name:"半身裙",
-							   imgUrl:"../../static/img/list1.jpg"
-						   },
-						   {
-							   id:2,
-							   name:"连衣裙",
-							   imgUrl:"../../static/img/list1.jpg"
-						   }
-					   ]
-				   },
-				   {
-					   name:"上衣",
-					   list:[
-						   {
-							   id:1,
-							   name:"T恤",
-							   imgUrl:"../../static/img/list1.jpg"
-						   },
-						   {
-							   id:2,
-							   name:"衬衫",
-							   imgUrl:"../../static/img/list1.jpg"
-						   }
-					   ]
-				   }
-			   ]
-		   }
-	   ]
-   })
+	res.json({
+		code: 0,
+		data: [{
+				id: 1,
+				name: "家居家纺",
+				data: [{
+						name: "家纺",
+						list: [{
+								id: 1,
+								name: "毛巾/浴巾",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "枕头",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "枕头",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "生活用品",
+						list: [{
+								id: 1,
+								name: "浴室用品",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "洗晒",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "洗晒",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+			{
+				id: 2,
+				name: "女装",
+				data: [{
+						name: "裙装",
+						list: [{
+								id: 1,
+								name: "半身裙",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "连衣裙",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					},
+					{
+						name: "上衣",
+						list: [{
+								id: 1,
+								name: "T恤",
+								imgUrl: "../../static/img/list1.jpg"
+							},
+							{
+								id: 2,
+								name: "衬衫",
+								imgUrl: "../../static/img/list1.jpg"
+							}
+						]
+					}
+				]
+			},
+
+		]
+	})
 });
 
 
