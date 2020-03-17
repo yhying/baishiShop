@@ -1853,7 +1853,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 3,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -1900,7 +1900,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 4,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -1933,7 +1933,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 5,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -1966,7 +1966,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 6,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -1999,7 +1999,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 7,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -2032,7 +2032,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 8,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -2065,7 +2065,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 9,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -2098,7 +2098,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 10,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -2131,7 +2131,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 11,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -2164,7 +2164,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 12,
 				name: "女装",
 				data: [{
 						name: "裙装",
@@ -2197,7 +2197,7 @@ router.get('/api/goods/list', function(req, res, next) {
 				]
 			},
 			{
-				id: 2,
+				id: 13,
 				name: "女装",
 				data: [{
 						name: "裙装",
