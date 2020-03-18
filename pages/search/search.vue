@@ -45,6 +45,13 @@
 				}
 			});
 		},
+		// 监听左上角默认返回功能
+		onBackPress(event){
+			uni.switchTab({
+				url: '../index/index'
+			})
+			return true;
+		},
 		//点击顶栏中的搜索按钮
 		onNavigationBarButtonTap(e) {
 			this.ToSearch()
