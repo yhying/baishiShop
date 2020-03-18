@@ -1,10 +1,10 @@
 <template>
 	<view class="uni-numbox">
-		<view @click="_calcValue('minus')" class="uni-numbox__minus">
+		<view @click.stop.prevent="_calcValue('minus')" class="uni-numbox__minus">
 			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</text>
 		</view>
 		<input :disabled="disabled" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
-		<view @click="_calcValue('plus')" class="uni-numbox__plus">
+		<view @click.stop.prevent="_calcValue('plus')" class="uni-numbox__plus">
 			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</text>
 		</view>
 	</view>
