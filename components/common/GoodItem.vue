@@ -1,7 +1,7 @@
 <template>
 	<view class="Goods" :style="'flex-wrap:'+wrap">
 	<!-- 单个商品组件 -->
-	<view class="GoodItem" v-for="(item,i) in goodsList" :key="i" :style="'width:'+itemWidth" >
+	<view class="GoodItem" v-for="(item,i) in goodsList" :key="i" :style="'width:'+itemWidth" @tap="goDetail()" >
 		<image :src="item.imgUrl" mode="" :style="'height:'+itemHeight"></image>
 		<view class="GoodItem-content">
 			<text class='goods-name' :style="'fontSize:'+textSize">{{item.name}}</text>
@@ -42,6 +42,13 @@
 				default(){
 					return '30rpx'
 				}
+			}
+		},
+		methods:{
+			goDetail(){
+				uni.navigateTo({
+				    url: '../../pages/detail/detail'
+				})
 			}
 		}
 	}

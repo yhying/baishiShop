@@ -88,13 +88,12 @@
 				//避免重复点击请求
 				console.log(this.activeIndex)
 				if(  id === (this.activeIndex+1) ){
-					console.log('222')
 					return;
 				}
 				$http.request({
 					url: '/goods/list'
 				}).then(res => {
-					console.log(res)
+					// console.log(res)
 					let leftData = [];
 					let rightData = []
 					res.forEach(item => {
