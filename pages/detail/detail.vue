@@ -32,8 +32,29 @@
 				<view class='iconfont icon-gouwuche-'></view>
 			</view>
 			<view class="add">
-				<view class='add-shopcart'>加入购物车</view>
-				<view class='purchase'>立即购买</view>
+				<view class='add-shopcart' @tap='showPop'>加入购物车</view>
+				<view class='purchase' @tap='showPop'>立即购买</view>
+			</view>
+		</view>
+		
+		<!--底部弹出层-->
+		<view class="pop" v-show='isShow' @touchmove.stop.prevent=''>
+			<!--蒙层-->
+			<view class='pop-mask' @tap='hidePop'></view>
+			<!--内容块-->
+			<view class='pop-box' :animation="animationData">
+				<view>
+					<image class='pop-img' src="../../static/img/Furnishing1.jpg" mode=""></image>
+				</view>
+				<view class='pop-num'>
+					<view>购买数量</view>
+					<UniNumberBox 
+						:min='1'
+					></UniNumberBox>
+				</view>
+				<view class='pop-sub'>
+					确定
+				</view>
 			</view>
 		</view>
 	</view>
@@ -42,13 +63,17 @@
 <script>
 	import Card from '@/components/common/Card.vue'
 	import CommodityList from '@/components/common/GoodList.vue'
+		import UniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
 	export default {
 		components:{
 			Card,
-			CommodityList
+			CommodityList,
+			UniNumberBox
 		},
 		data() {
 			return {
+			    isShow:false,
+				animationData:{},
 				swiperList:[
 					{imgUrl:"../../static/img/details1.jpeg"},
 					{imgUrl:"../../static/img/details2.jpeg"},
@@ -91,6 +116,33 @@
 			}
 		},
 		methods: {
+			//点击购买
+			showPop(){
+				var animation = uni.createAnimation({
+				   duration: 200
+				})
+				animation.translateY(600).step();
+				this.animationData = animation.export();
+				this.isShow = true;
+				setTimeout(()=>{
+					animation.translateY(0).step();
+					this.animationData = animation.export();
+				},200)
+			},
+			// 点击蒙层关闭
+			hidePop(){
+				var animation = uni.createAnimation({
+				   duration: 200
+				})
+				animation.translateY(600).step();
+				this.animationData = animation.export();
+				this.isShow =true;
+				setTimeout(()=>{
+					animation.translateY(0).step();
+					this.animationData = animation.export();
+					this.isShow = false;
+				},200)
+			},
 			
 		}
 	}
@@ -155,5 +207,43 @@ swiper{
 	background-color: #49BDFB;
 	color:#FFFFFF;
 	border-radius: 40rpx;
+}
+.pop{
+	position: fixed;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+}
+.pop-mask{
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+}
+.pop-box{
+	position: absolute;
+	left:0;
+	bottom:0;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+.pop-img{
+	width: 260rpx;
+	height: 260rpx;
+}
+.pop-num{
+	padding:20rpx;
+	display: flex;
+	justify-content: space-between;
+}
+.pop-sub{
+	line-height: 80rpx;
+	background-color: #49BDFB;
+	color:#FFFFFF;
+	text-align: center;
 }
 </style>
