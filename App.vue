@@ -24,4 +24,11 @@
 		align-items: center;
 		justify-content: center;
 	}
+	/* 修改首页顶部导航样式 */
+	.uni-navbar--border[data-v-cee94ab2]{
+		border-bottom: none !important;
+	}
+	.uni-nav-bar-text[data-v-cee94ab2] {
+		font-weight: 700 !important;
+	}
 </style>

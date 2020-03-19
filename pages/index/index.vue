@@ -1,5 +1,16 @@
 <template>
 	<view class="content">
+		<!--自定义导航栏 h5平台-->
+		<!-- #ifdef H5-->
+		<uniNavBar
+			title='百年奥莱' 
+			left-icon="search"
+			right-icon="chat"
+			fixed='true'
+			status-bar='true'
+			@clickLeft="search()"
+		></uniNavBar>
+		<!-- #endif -->
 		<scroll-view scroll-x="true" class="scroll-content" :scroll-into-view="ScrollIndex">
 			<view v-for="(item,i) in topBar" :key="i" @click="tabBarClick(i)" :id="'top'+i">
 				<text :class="i==tabBarIndex?'f-active-color':'f-color'">{{item.name}}</text>
@@ -46,6 +57,7 @@
 </template>
 
 <script>
+	import uniNavBar from '@/components/uni/uni-nav-bar/uni-nav-bar.vue'
 	import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 	import $http from '@/common/api/request.js'
 	import Swiper from '@/components/index/indexSwiper.vue'
@@ -58,6 +70,7 @@
 	import Shop from '@/components/index/Shop.vue'
 	export default {
 		components: {
+			uniNavBar,
 			Swiper,
 			Recommend,
 			Card,
@@ -100,12 +113,16 @@
 		onNavigationBarButtonTap(e){
 			console.log(e)
 			if(e.float=='left'){
-				uni.navigateTo({
-				    url: '../search/search'
-				})
+				this.search()
 			}
 		},
 		methods: {
+			// 监听h5自定义导航左侧搜索点击事件
+			search(){
+				uni.navigateTo({
+				    url: '../search/search'
+				})
+			},
 			// 监听顶部滑块切换事件
 			tabBarClick(index) {
 				this.tabBarIndex = index
