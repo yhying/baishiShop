@@ -10,9 +10,9 @@
 		</swiper>
 		<!--价格和名称-->
 		<view class='details-goods'>
-			<view class='goods-pprice'>¥399.00</view>
-			<view class='goods-oprice'>¥599.00</view>
-			<view class='goods-name'>大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须</view>
+			<view class='goods-pprice'>¥{{goodsContent.pprice}}</view>
+			<view class='goods-oprice'>¥{{goodsContent.oprice}}</view>
+			<view class='goods-name'>{{goodsContent.name}}</view>
 		</view>
 		<!--商品详情图-->
 		<view>
@@ -64,6 +64,7 @@
 	import Card from '@/components/common/Card.vue'
 	import CommodityList from '@/components/common/GoodList.vue'
 		import UniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
+		import $http from '@/common/api/request.js'
 	export default {
 		components:{
 			Card,
@@ -74,6 +75,7 @@
 			return {
 			    isShow:false,
 				animationData:{},
+				goodsContent:{},
 				swiperList:[
 					{imgUrl:"../../static/img/details1.jpeg"},
 					{imgUrl:"../../static/img/details2.jpeg"},
@@ -115,6 +117,39 @@
 				]
 			}
 		},
+		onLoad(e) {
+			this.getdetailData(e.id)
+		},
+		// 监听左上角默认返回功能
+		onBackPress(event){
+			if(this.isShow){
+				this.hidePop()
+				return true;
+			}
+		},
+		//点击分享 不支持h5
+		onNavigationBarButtonTap(e) {
+			console.log(e)
+			if(e.type==='share'){
+				uni.share({
+					"provider":"weixin",
+					"type":0,
+					"scene":"WXSceneSession",
+					"title":this.goodsContent.name,
+					"href":"http://192.168.8.6:8080/#/pages/details/details?id="+this.goodsContent.id+"",
+					imageUrl:this.goodsContent.imgUrl,
+					success: function (res) {
+						uni.showTabBar({
+							title:"分享成功"
+						})
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+					
+				})
+			}
+		},
 		methods: {
 			//点击购买
 			showPop(){
@@ -143,6 +178,22 @@
 					this.isShow = false;
 				},200)
 			},
+			getdetailData(id){
+				$http.request({
+					url: '/goods/id',
+					data:{
+						id:id
+					}
+				
+				}).then((res) => {
+					this.goodsContent = res[0];
+				}).catch(() => {
+					uni.showToast({
+						title: '请求失败',
+						icon: 'none'
+					})
+				})
+			}
 			
 		}
 	}

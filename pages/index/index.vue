@@ -179,7 +179,7 @@
 			getindexOtherData(callback) {
 				let index = this.tabBarIndex
 				let topBarid = this.topBar[index].id
-				console.log(this.newTopBar)
+				// console.log(this.newTopBar)
 				let pageId = Math.ceil(this.newTopBar[index].data.length / 5) + 1;
 				$http.request({
 					url: `/index/${topBarid}/data/${pageId}` /* ES6*/

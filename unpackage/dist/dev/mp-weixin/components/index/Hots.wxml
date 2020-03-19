@@ -1,0 +1,1 @@
+<view class="Hots data-v-a09fec54"><good-item vue-id="1" goodsList="{{hostsList}}" itemWidth="249rpx" itemHeight="220rpx" class="data-v-a09fec54" bind:__l="__l"></good-item></view>

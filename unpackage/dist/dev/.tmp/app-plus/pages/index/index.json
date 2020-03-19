@@ -17,6 +17,7 @@
     ]
   },
   "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
     "swiper": "/components/index/indexSwiper",
     "recommend": "/components/index/Recommend",
     "card": "/components/common/Card",

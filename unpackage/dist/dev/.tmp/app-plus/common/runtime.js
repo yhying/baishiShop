@@ -102,11 +102,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/common/Card":1,"components/index/Icons":1,"components/index/Recommend":1,"components/index/Shop":1,"components/index/banner":1,"components/index/indexSwiper":1,"components/common/GoodItem":1};
+/******/ 		var cssChunks = {"components/common/Card":1,"components/index/Icons":1,"components/index/Recommend":1,"components/index/Shop":1,"components/index/banner":1,"components/index/indexSwiper":1,"components/uni-load-more/uni-load-more":1,"components/common/Line":1,"components/common/ShopList":1,"components/uni-number-box/uni-number-box":1,"components/common/GoodItem":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/common/Card":"components/common/Card","components/common/GoodList":"components/common/GoodList","components/index/Hots":"components/index/Hots","components/index/Icons":"components/index/Icons","components/index/Recommend":"components/index/Recommend","components/index/Shop":"components/index/Shop","components/index/banner":"components/index/banner","components/index/indexSwiper":"components/index/indexSwiper","components/common/GoodItem":"components/common/GoodItem"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/common/Card":"components/common/Card","components/common/GoodList":"components/common/GoodList","components/index/Hots":"components/index/Hots","components/index/Icons":"components/index/Icons","components/index/Recommend":"components/index/Recommend","components/index/Shop":"components/index/Shop","components/index/banner":"components/index/banner","components/index/indexSwiper":"components/index/indexSwiper","components/uni-load-more/uni-load-more":"components/uni-load-more/uni-load-more","components/common/Line":"components/common/Line","components/common/ShopList":"components/common/ShopList","components/uni-number-box/uni-number-box":"components/uni-number-box/uni-number-box","components/common/GoodItem":"components/common/GoodItem"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

@@ -1,6 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../db/Sql.js')
+
+// 跨域解决
+router.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  //Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', '*');
+  res.header('Content-Type', 'application/json;charset=utf-8');
+  next();
+});
 /* GET home page. 首页推荐模板数据*/
 router.get('/api/index/data', function(req, res, next) {
 	res.send({
@@ -2234,5 +2244,16 @@ router.get('/api/goods/list', function(req, res, next) {
 	})
 });
 
+// 详情数据接口
+router.get('/api/goods/id', function(req, res, next) {
+  let id = req.query.id;
+  connection.query("select * from goods_search where id="+id+"", function (error, results, fields) {
+    if (error) throw error;
+    res.send({
+  	  code:"0",
+  	  data:results
+    })
+  });
+});
 
 module.exports = router;

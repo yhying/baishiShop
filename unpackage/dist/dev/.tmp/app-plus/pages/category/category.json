@@ -1,3 +1,18 @@
 {
-  "usingComponents": {}
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "scrollIndicator": "none",
+  "titleNView": {
+    "searchInput": {
+      "align": "left",
+      "autoFocus": false,
+      "backgroundColor": "#f7f7f7",
+      "borderRadius": "15px",
+      "placeholder": "请输入关键字",
+      "disabled": true,
+      "placeholderColor": "#b3b3b3"
+    }
+  },
+  "usingComponents": {
+    "lines": "/components/common/Line"
+  }
 }

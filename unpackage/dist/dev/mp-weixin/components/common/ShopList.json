@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "lines": "/components/common/Line",
+    "good-list": "/components/common/GoodList"
+  },
+  "component": true
+}

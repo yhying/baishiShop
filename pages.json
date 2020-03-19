@@ -9,11 +9,11 @@
 					"titleNView": {
 						"buttons": [{
 							"float": "left",
-							// "fontSrc": "./static/iconfont.ttf",
+							"fontSrc": "./static/iconfont.ttf",
 							"text": "\ue848"
 						}, {
 							"float": "right",
-							// "fontSrc": "./static/iconfont.ttf",
+							"fontSrc": "./static/iconfont.ttf",
 							"text": "\ue638"
 						}]
 					}

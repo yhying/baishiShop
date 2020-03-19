@@ -1,0 +1,16 @@
+
+.card.data-v-4de5e511 {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	font-weight: bold;
+	padding: 20rpx 0;
+}
+.card-name.data-v-4de5e511 {
+	padding: 0 20rpx;
+	font-size: 32rpx;
+}
+

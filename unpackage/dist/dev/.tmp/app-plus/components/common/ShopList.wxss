@@ -1,0 +1,43 @@
+
+.ShopList.data-v-e57c9f96 {
+	font-size: 28rpx;
+}
+.shop-title.data-v-e57c9f96 {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.shop-item.data-v-e57c9f96 {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	height: 80rpx;
+}
+.shop-item .icons.data-v-e57c9f96 {
+	position: relative;
+	margin-left: 5rpx;
+	text-align: center;
+}
+.iconfont.data-v-e57c9f96 {
+	width: 16rpx;
+	height: 8rpx;
+	
+	position: absolute;
+	left: 0;
+}
+.up.data-v-e57c9f96 {
+	top: -22rpx;
+}
+.down.data-v-e57c9f96 {
+	top: -8rpx
+}
+

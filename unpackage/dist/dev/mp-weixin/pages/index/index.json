@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "百年奥莱",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
+    "swiper": "/components/index/indexSwiper",
+    "recommend": "/components/index/Recommend",
+    "card": "/components/common/Card",
+    "good-list": "/components/common/GoodList",
+    "banner": "/components/index/banner",
+    "icons": "/components/index/Icons",
+    "hots": "/components/index/Hots",
+    "shop": "/components/index/Shop"
+  }
+}
