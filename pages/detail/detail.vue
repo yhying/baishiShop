@@ -29,7 +29,7 @@
 		<view class='details-foot'>
 			<view class="icon">
 				<view class='iconfont icon-xiaoxi'></view>
-				<view class='iconfont icon-gouwuche-'></view>
+				<view class='iconfont icon-gouwuche-' @tap="goShopCar()"></view>
 			</view>
 			<view class="add">
 				<view class='add-shopcart' @tap='showPop'>加入购物车</view>
@@ -44,15 +44,17 @@
 			<!--内容块-->
 			<view class='pop-box' :animation="animationData">
 				<view>
-					<image class='pop-img' src="../../static/img/Furnishing1.jpg" mode=""></image>
+					<image class='pop-img' :src="goodsContent.imgUrl" mode=""></image>
 				</view>
 				<view class='pop-num'>
 					<view>购买数量</view>
 					<UniNumberBox 
 						:min='1'
+						:value='num'
+						@change="changeNum"
 					></UniNumberBox>
 				</view>
-				<view class='pop-sub'>
+				<view class='pop-sub' @tap="addCar()">
 					确定
 				</view>
 			</view>
@@ -65,6 +67,7 @@
 	import CommodityList from '@/components/common/GoodList.vue'
 		import UniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
 		import $http from '@/common/api/request.js'
+		import {mapMutations} from 'vuex'
 	export default {
 		components:{
 			Card,
@@ -74,6 +77,7 @@
 		data() {
 			return {
 			    isShow:false,
+				num:1,
 				animationData:{},
 				goodsContent:{},
 				swiperList:[
@@ -151,6 +155,7 @@
 			}
 		},
 		methods: {
+			...mapMutations(['ShopCar']),
 			//点击购买
 			showPop(){
 				var animation = uni.createAnimation({
@@ -163,6 +168,26 @@
 					animation.translateY(0).step();
 					this.animationData = animation.export();
 				},200)
+			},
+			goShopCar(){
+				uni.switchTab({
+					url:'../car/car'
+				})
+			},
+			changeNum(value){
+				this.num=value
+			},
+			// 加入购物车
+			addCar(){
+				let goods=this.goodsContent
+				this.goodsContent['checked']=true
+				this.goodsContent['num']=this.num
+				this.ShopCar(goods)
+				this.hidePop()
+				uni.showToast({
+					title:'加入购物车成功',
+					icon:'none'
+				})
 			},
 			// 点击蒙层关闭
 			hidePop(){

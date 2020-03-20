@@ -1,24 +1,7 @@
+const car=JSON.parse(localStorage.getItem('carlist') || '[]')
 export default {
 	state: {
-		carlist: [{
-				checked: false,
-				id: 1,
-				name: "大姨绒毛大款2020年爆款疯狂GG008",
-				color: "颜色：粉色",
-				imgUrl: "../../static/img/Children2.jpg",
-				pprice: "27",
-				num: 1
-			},
-			{
-				checked: false,
-				id: 2,
-				name: "大姨绒毛大款2020年爆款疯狂GG008",
-				color: "颜色：粉色",
-				imgUrl: "../../static/img/Children2.jpg",
-				pprice: "27",
-				num: 1
-			}
-		],
+		carlist: car,
 		selectedList: []
 	},
 	getters: {
@@ -27,8 +10,8 @@ export default {
 		},
 		totalCount(state) {
 			let total = {
-				pprice:0,
-				count:0
+				pprice: 0,
+				count: 0
 			}
 			state.carlist.forEach(item => {
 				if (state.selectedList.indexOf(item.id) > -1) {
@@ -62,6 +45,26 @@ export default {
 				item.checked = true
 				state.selectedList.push(id)
 			}
+		},
+		delete(state) {
+			if (state.selectedList.length === 0) {
+				uni.showToast({
+					title: '请选择需要删除的商品',
+					icon: 'none'
+				})
+				return;
+			}
+			state.carlist = state.carlist.filter(item => {
+				return !item.checked
+			})
+			uni.showToast({
+				title: '删除成功',
+				icon: 'none'
+			})
+		},
+		ShopCar(state, goods) {
+			state.carlist.push(goods)
+            localStorage.setItem('carlist', JSON.stringify(state.carlist))
 		}
 	},
 	actions: {
@@ -76,6 +79,13 @@ export default {
 			state
 		}, payload) {
 			commit('ClickRadio', payload)
+		},
+		deleteGoods({
+			commit,
+			state
+		}) {
+			commit('delete')
+			commit('uncheckAll')
 		}
 	}
 
