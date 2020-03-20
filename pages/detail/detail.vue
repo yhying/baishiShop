@@ -180,7 +180,7 @@
 			// 加入购物车
 			addCar(){
 				let goods=this.goodsContent
-				this.goodsContent['checked']=true
+				this.goodsContent['checked']=false
 				this.goodsContent['num']=this.num
 				this.ShopCar(goods)
 				this.hidePop()

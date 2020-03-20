@@ -1,7 +1,7 @@
-const car=JSON.parse(localStorage.getItem('carlist') || '[]')
+const carlist=JSON.parse(localStorage.getItem('carlist') || '[]')
 export default {
 	state: {
-		carlist: car,
+		carlist: carlist,
 		selectedList: []
 	},
 	getters: {
