@@ -15,7 +15,7 @@
 		</view>
 
 		<view class='add-path'>
-			<view class='add-path-btn'>新增地址</view>
+			<view class='add-path-btn' @tap="addAddress()">新增地址</view>
 		</view>
 
 	</view>
@@ -33,7 +33,11 @@
 			}
 		},
 		methods: {
-
+			addAddress(){
+				uni.navigateTo({
+					url:'../my-add-path/my-add-path'
+				})
+			}
 		}
 	}
 </script>

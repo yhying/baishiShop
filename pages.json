@@ -156,6 +156,21 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/my-add-path/my-add-path",
+            "style" : {
+				"navigationBarTitleText": "新增地址",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						"buttons": [{
+							"text":"保存",
+							"fontSize":"32rpx"
+						}]
+					}
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
