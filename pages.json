@@ -29,13 +29,13 @@
 					"titleNView": {
 						// "type": "transparent", 
 						"searchInput": {
-							"align":"left",
-							"autoFocus":false,
+							"align": "left",
+							"autoFocus": false,
 							"backgroundColor": "#f7f7f7",
 							"borderRadius": "15px", //输入框圆角
 							"placeholder": "请输入关键字",
-							"disabled": true ,
-							"placeholderColor":"#b3b3b3"
+							"disabled": true,
+							"placeholderColor": "#b3b3b3"
 						}
 					}
 				}
@@ -43,14 +43,19 @@
 		}, {
 			"path": "pages/car/car",
 			"style": {
-				"app-plus":{
-					"titleNView":false,
-					"scrollIndicator":"none"
+				"app-plus": {
+					"titleNView": false,
+					"scrollIndicator": "none"
 				}
 			}
 		}, {
 			"path": "pages/my/my",
-			"style": {}
+			"style": {
+				"app-plus": {
+					"titleNView": false,
+					"scrollIndicator": "none"
+				}
+			}
 		}, {
 			"path": "pages/search/search",
 			"style": {
@@ -60,81 +65,102 @@
 					"titleNView": {
 						// "type": "transparent", 
 						"searchInput": {
-							"align":"left",
-							"autoFocus":true,
+							"align": "left",
+							"autoFocus": true,
 							"backgroundColor": "#f7f7f7",
 							"borderRadius": "15px", //输入框圆角
 							"placeholder": "nike",
-							"disabled": false ,
-							"placeholderColor":"#b3b3b3"
+							"disabled": false,
+							"placeholderColor": "#b3b3b3"
 						},
-						"buttons":[
-							{
-								"float":"right",
-								"text": "搜索",
-								"fontSize":"16px",
-								"color":"#636263",
-								"width":"60px"
-							}
-						]
+						"buttons": [{
+							"float": "right",
+							"text": "搜索",
+							"fontSize": "16px",
+							"color": "#636263",
+							"width": "60px"
+						}]
 					}
 				}
 			}
-		}
-	    ,{
-            "path" : "pages/search-List/search-List",
-            "style" : {
+		}, {
+			"path": "pages/search-List/search-List",
+			"style": {
 				"navigationBarBackgroundColor": "#FFFFFF",
 				"app-plus": {
 					"scrollIndicator": "none",
 					"titleNView": {
 						// "type": "transparent", 
 						"searchInput": {
-							"align":"left",
-							"autoFocus":false,
+							"align": "left",
+							"autoFocus": false,
 							"backgroundColor": "#f7f7f7",
 							"borderRadius": "15px", //输入框圆角
 							"placeholder": "nike",
-							"disabled": true ,
-							"placeholderColor":"#b3b3b3"
+							"disabled": true,
+							"placeholderColor": "#b3b3b3"
 						},
-						"buttons":[
+						"buttons": [{
+							"float": "right",
+							"text": "筛选",
+							"fontSize": "16px",
+							"color": "#636263",
+							"width": "60px"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/detail/detail",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent",
+						"buttons": [{
+								"type": "menu"
+							},
 							{
-								"float":"right",
-								"text": "筛选",
-								"fontSize":"16px",
-								"color":"#636263",
-								"width":"60px"
+								"type": "share"
 							}
 						]
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/detail/detail",
+		}, {
+			"path": "pages/my-config/my-config",
+			"style": {
+				"navigationBarTitleText": "设置",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/my-path-list/my-path-list",
             "style" : {
-            	"navigationBarTitleText": "商品详情",
-            	"app-plus":{
-            		"titleNView":{
-            			"type":"transparent",
-            			"buttons":[
-            				{
-            					"type":"menu"
-            				},
-            				{
-            					"type":"share"
-            				}
-            			]
-            		}
-            	}
-            }
+				"navigationBarTitleText": "地址管理",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						"buttons": [{
+							"text":"编辑",
+							"fontSize":"32rpx"
+						}]
+					}
+				}
+			}
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {

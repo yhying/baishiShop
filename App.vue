@@ -31,4 +31,7 @@
 	.uni-nav-bar-text[data-v-cee94ab2] {
 		font-weight: 700 !important;
 	}
+	uni-page-head .uni-page-head-ft {
+		padding-right: 30rpx;
+	}
 </style>
