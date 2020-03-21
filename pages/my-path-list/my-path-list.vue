@@ -1,15 +1,15 @@
 <template>
 	<view class='my-path-list'>
 		<Lines />
-		<view class='path-list'>
-			<view class='path-item'>
+		<view class='path-list' v-for="(item,index) in addressList" :key="index">
+			<view class='path-item' @tap="editAddress(index)">
 				<view class='item-main'>
-					<view class='item-name'>张三</view>
-					<view>18511773322</view>
+					<view class='item-name'>{{item.name}}</view>
+					<view>{{item.tel}}</view>
 				</view>
 				<view class='item-main'>
-					<view class='active'>默认</view>
-					<view>北京市海淀区上地办公中心xxxx</view>
+					<view class='active' v-if="item.isdefault">默认</view>
+					<view>{{item.cityName+item.details}}</view>
 				</view>
 			</view>
 		</view>
@@ -23,6 +23,7 @@
 
 <script>
 	import Lines from '@/components/common/Line.vue'
+	import {mapState} from 'vuex' 
 	export default {
 		components: {
 			Lines
@@ -32,7 +33,23 @@
 
 			}
 		},
+		computed:{
+			...mapState({
+				addressList:state=>state.path.addressList
+			})
+		},
+		
 		methods: {
+			// 修改地址
+			editAddress(index){
+				let pathObj=JSON.stringify({
+					index:index,
+					item:this.addressList[index]
+				})
+				uni.navigateTo({
+					url:'../my-add-path/my-add-path?data='+pathObj
+				})
+			},
 			addAddress(){
 				uni.navigateTo({
 					url:'../my-add-path/my-add-path'
@@ -49,10 +66,15 @@
 	}
 
 	.path-item {
-		padding: 10rpx;
-		/* border-bottom: 2rpx solid #CCCCCC; */
+		padding: 20rpx 10rpx 0 10rpx;
+		border-bottom: 2rpx solid #CCCCCC;
 	}
-
+	.path-item .item-main:first-child {
+		padding-bottom: 20rpx;
+	}
+	.path-item .item-main:last-child {
+		padding-bottom: 10rpx;
+	}
 	.item-main {
 		display: flex;
 		align-items: center;
@@ -66,11 +88,13 @@
 
 	.active {
 		padding:0 10rpx;
+		margin-right: 10rpx;
 		background-color: #49BDFB;
 		color: #FFFFFF;
 		border-radius: 26rpx;
 		font-size: 24rpx;
 		text-align: center;
+		
 	}
 
 	.add-path {
