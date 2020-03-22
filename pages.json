@@ -171,6 +171,20 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/my-order/my-order",
+            "style" : {
+				"navigationBarTitleText": "我的订单",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
