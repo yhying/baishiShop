@@ -24,8 +24,15 @@ export default {
 		addAddress(state, obj) {
 			state.addressList.unshift(obj)
 		},
+		// 修改地址
 		EditAddress(state,{index,item}){
 			state.addressList[index]=item
+		},
+		// 设置默认地址
+		attrAddress(state){
+			state.addressList.map(item=>{
+				return item.isDefault=false
+			})
 		}
 	},
 	actions:{
@@ -33,6 +40,9 @@ export default {
 			commit,
 			state
 		},payload) {
+			if(payload.isDefault){
+				commit('attrAddress')
+			}
 			commit("addAddress", payload)
 		},
 		// 修改地址
@@ -40,6 +50,9 @@ export default {
 			commit,
 			state
 		},payload) {
+			if(payload.item.isDefault){
+				commit('attrAddress')
+			}
 			commit("EditAddress", payload)
 		}
 	}

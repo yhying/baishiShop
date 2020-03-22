@@ -8,7 +8,7 @@
 					<view>{{item.tel}}</view>
 				</view>
 				<view class='item-main'>
-					<view class='active' v-if="item.isdefault">默认</view>
+					<view class='active' v-if="item.isDefault">默认</view>
 					<view>{{item.cityName+item.details}}</view>
 				</view>
 			</view>
