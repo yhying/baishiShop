@@ -13,6 +13,17 @@
 .bg-color{
 	background-color: #42B7FB;
 }
+.bg-active-color {
+	background-color: #f7f7f7;
+}
+/* 默认字体大小 */
+.f-size {
+	font-size: 32rpx;
+}
+/* 加粗 */
+.f-blod {
+	font-weight: bold;
+}
 /* 隐藏滚动条 */
 ::-webkit-scrollbar {  
     display: none;  

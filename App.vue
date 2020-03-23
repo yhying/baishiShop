@@ -17,7 +17,22 @@
 	/* @import url("./common/uni.css"); */
 	@import url("common/iconfont.css");
 	@import url("./common/common.css");
-	
+	/* 订单图标 */
+	@font-face {
+	  font-family: 'iconfont';  /* project id 1707897 */
+	  src: url('//at.alicdn.com/t/font_1707897_kuqzjxnmu2.eot');
+	  src: url('//at.alicdn.com/t/font_1707897_kuqzjxnmu2.eot?#iefix') format('embedded-opentype'),
+	  url('//at.alicdn.com/t/font_1707897_kuqzjxnmu2.woff2') format('woff2'),
+	  url('//at.alicdn.com/t/font_1707897_kuqzjxnmu2.woff') format('woff'),
+	  url('//at.alicdn.com/t/font_1707897_kuqzjxnmu2.ttf') format('truetype'),
+	  url('//at.alicdn.com/t/font_1707897_kuqzjxnmu2.svg#iconfont') format('svg');
+	}
+	.iconfont{
+	    font-family:"iconfont" !important;
+	    font-size:32rpx;font-style:normal;
+	    -webkit-font-smoothing: antialiased;
+	    -webkit-text-stroke-width: 0.2px;
+	    -moz-osx-font-smoothing: grayscale;}
 	/* 修改默认样式 */
 	.uni-page-head-btn {
 		display: flex;

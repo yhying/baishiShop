@@ -185,6 +185,17 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/confrim-order/confrim-order",
+            "style" : {
+				"navigationBarTitleText": "确认订单",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+					}
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -36,6 +36,7 @@ export default {
 			state.selectedList = [];
 		},
 		ClickRadio(state, item) {
+			console.log(item.id)
 			let id = item.id
 			let i = state.selectedList.indexOf(id)
 			if (i > -1) {
@@ -73,12 +74,6 @@ export default {
 			getters
 		}) {
 			getters.checkdAll ? commit('uncheckAll') : commit('checkAll')
-		},
-		clickRadio({
-			commit,
-			state
-		}, payload) {
-			commit('ClickRadio', payload)
 		},
 		deleteGoods({
 			commit,

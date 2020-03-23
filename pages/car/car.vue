@@ -6,7 +6,7 @@
 			<!--商品内容-->
 			<view class='shop-list'>
 				<view class='shop-item' v-for='(item,index) in carlist' :key='index'>
-					<label class="radio" @tap="clickRadio(item)">
+					<label class="radio" @tap="ClickRadio(item)">
 						<radio value="" color="#FF3333" :checked="item.checked" /><text></text>
 					</label>
 					<image class='shop-img' :src="item.imgUrl" mode=""></image>
@@ -31,7 +31,7 @@
 				<template v-if="!isNavBar">
 					<view class='foot-total'>
 						<view class='foot-count'>合计：<text class='f-active-color'>¥{{totalCount.pprice}}</text></view>
-						<view class='foot-num'>结算({{totalCount.count}})</view>
+						<view class='foot-num' @tap="confirmOrder()">结算({{totalCount.count}})</view>
 					</view>
 				</template>
 				<template v-else>
@@ -58,7 +58,8 @@
 	import {
 		mapState,
 		mapActions,
-		mapGetters
+		mapGetters,
+		mapMutations
 	} from 'vuex'
 	export default {
 		components: {
@@ -73,13 +74,14 @@
 		computed: {
 			...mapGetters(['checkdAll', 'totalCount']),
 			...mapState({
-				carlist: state => state.cart.carlist /* 对象语法,映射 */
+				carlist: state => state.cart.carlist, /*, 对象语法,映射 */
+				selectedList: state => state.cart.selectedList
 			})
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		methods: {
-			...mapActions(['checkAllFn', 'clickRadio', 'deleteGoods']),
+			...mapActions(['checkAllFn', 'deleteGoods']),
+			...mapMutations(['ClickRadio']),
 			// 跳转分类页面
 			goSearch() {
 				uni.switchTab({
@@ -88,6 +90,18 @@
 			},
 			changeBox(e, index) {
 				this.carlist[index].num = e
+			},
+			confirmOrder() {
+				if(this.selectedList.length>0){
+					uni.navigateTo({
+						url: '../confrim-order/confrim-order'
+					})
+					return;
+				}
+				uni.showToast({
+					title: "请选择要购买的商品",
+					icon: 'none'
+				})
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 <template>
-	<view class="order">
+	<view class="order bg-active-color ">
 		<Lines />
 		<view class="order-header">
 			<view class="header-item" :class="currentIndex==index?'active':''" v-for="(item,index) in orderBar" :key="index"
@@ -110,11 +110,6 @@
 </script>
 
 <style scoped>
-	.order {
-		background-color: #F7f7f7;
-		/* height: calc(100vh - 95rpx); */
-	}
-
 	.order-header {
 		display: flex;
 		align-items: center;

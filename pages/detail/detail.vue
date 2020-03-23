@@ -209,7 +209,6 @@
 					data:{
 						id:id
 					}
-				
 				}).then((res) => {
 					this.goodsContent = res[0];
 				}).catch(() => {
