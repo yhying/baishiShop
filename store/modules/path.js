@@ -17,7 +17,11 @@ export default {
 		]
 	},
 	getters: {
-
+		pathDefault(state) {
+		return	state.addressList.filter(item => {
+				return item.isDefault
+			})
+		}
 	},
 	mutations: {
 		// 添加新地址
@@ -25,22 +29,25 @@ export default {
 			state.addressList.unshift(obj)
 		},
 		// 修改地址
-		EditAddress(state,{index,item}){
-			state.addressList[index]=item
+		EditAddress(state, {
+			index,
+			item
+		}) {
+			state.addressList[index] = item
 		},
 		// 设置默认地址
-		attrAddress(state){
-			state.addressList.map(item=>{
-				return item.isDefault=false
+		attrAddress(state) {
+			state.addressList.map(item => {
+				return item.isDefault = false
 			})
 		}
 	},
-	actions:{
+	actions: {
 		addAddressFn({
 			commit,
 			state
-		},payload) {
-			if(payload.isDefault){
+		}, payload) {
+			if (payload.isDefault) {
 				commit('attrAddress')
 			}
 			commit("addAddress", payload)
@@ -49,8 +56,8 @@ export default {
 		EditAddressFn({
 			commit,
 			state
-		},payload) {
-			if(payload.item.isDefault){
+		}, payload) {
+			if (payload.item.isDefault) {
 				commit('attrAddress')
 			}
 			commit("EditAddress", payload)
