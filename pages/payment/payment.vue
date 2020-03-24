@@ -42,7 +42,7 @@
 				<text class="total">￥159</text>
 			</view>
 			<view class="right">
-				<text>去支付</text>
+				<text @tap="GoPay()">去支付</text>
 			</view>
 		</view>
 	</view>
@@ -65,6 +65,12 @@
 			Close() {
 				uni.navigateTo({
 					url: '../confrim-order/confrim-order'
+				})
+			},
+			// 实现支付，调用第三方支付接口
+			GoPay(){
+				uni.navigateTo({
+					url:'../pay-success/pay-success'
 				})
 			}
 		}

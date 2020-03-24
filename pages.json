@@ -205,6 +205,15 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/pay-success/pay-success",
+            "style" : {
+				"app-plus": {
+					"titleNView": false,
+					"scrollIndicator": "none"
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
