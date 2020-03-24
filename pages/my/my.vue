@@ -3,7 +3,7 @@
 		<!--头部-->
 		<view class='my-header'>
 			<view class='header-main'>
-				<view class='header-logo'>
+				<view class='header-logo' @tap="loginUser()">
 					<image class='logo-img' src="../../static/img/Children.jpg" mode=""></image>
 					<view class='logo-name'>用户昵称</view>
 				</view>
@@ -88,6 +88,11 @@
 			goOrder(){
 				uni.navigateTo({
 					url:'../my-order/my-order'
+				})
+			},
+			loginUser(){
+				uni.navigateTo({
+					url:'../login/login'
 				})
 			}
 		}
