@@ -46,7 +46,7 @@
 		</view>
 		<view class='order-foot'>
 			<view class='total-price'>合计：<text class='f-active-color'>¥3999.00</text></view>
-			<view class="submit">提交订单</view>
+			<view class="submit" @tap="goPayment()">提交订单</view>
 		</view>
 	</view>
 </template>
@@ -100,6 +100,12 @@
 			goPathList() {
 				uni.navigateTo({
 					url: '../my-path-list/my-path-list?type=SelectPath'
+				})
+			},
+			// 确认支付
+			goPayment(){
+				uni.navigateTo({
+					url:'../payment/payment'
 				})
 			}
 		}
