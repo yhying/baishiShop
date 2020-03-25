@@ -4,8 +4,8 @@
 		<view class='my-header'>
 			<view class='header-main'>
 				<view class='header-logo' @tap="loginUser()">
-					<image class='logo-img' src="../../static/img/Children.jpg" mode=""></image>
-					<view class='logo-name'>用户昵称</view>
+					<image class='logo-img' :src="loginStatus?userInfo.imgUrl:'../../static/header/one.png'" mode=""></image>
+					<view class='logo-name'>{{loginStatus?userInfo.rolesName:'用户昵称'}}</view>
 				</view>
 				<view class='header-config'>
 					<image class='config-img' src="../../static/img/config.png" @tap="goConfig()" mode=""></image>
@@ -25,19 +25,19 @@
 				</view>
 				<view class='order-item'>
 					<image class='order-img' src="../../static/img/order2.png" mode=""></image>
-					<view>待付款</view>
+					<view>待收货</view>
 				</view>
 				<view class='order-item'>
 					<image class='order-img' src="../../static/img/order3.png" mode=""></image>
-					<view>待付款</view>
+					<view>待评价</view>
 				</view>
 				<view class='order-item'>
 					<image class='order-img' src="../../static/img/order4.png" mode=""></image>
-					<view>待付款</view>
+					<view>待售后</view>
 				</view>
 				<view class='order-item'>
 					<image class='order-img' src="../../static/img/order5.png" mode=""></image>
-					<view>待付款</view>
+					<view>待退款</view>
 				</view>
 			</view>
 		</view>
@@ -45,7 +45,7 @@
 		<view class='my-content'>
 
 			<view class="my-content-item">
-				<view>我的收藏</view>
+				<view>我的钱包</view>
 				<view>></view>
 			</view>
 			<view class="my-content-item">
@@ -53,15 +53,15 @@
 				<view>></view>
 			</view>
 			<view class="my-content-item">
-				<view>我的收藏</view>
+				<view>我的足迹</view>
 				<view>></view>
 			</view>
 			<view class="my-content-item">
-				<view>我的收藏</view>
+				<view>下载APP</view>
 				<view>></view>
 			</view>
 			<view class="my-content-item">
-				<view>我的收藏</view>
+				<view>关于</view>
 				<view>></view>
 			</view>
 
@@ -70,9 +70,16 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	export default {
 		data() {
 			return {}
+		},
+		computed:{
+			...mapState({
+				loginStatus:state=>state.user.loginStatus,
+				userInfo:state=>state.user.userInfo
+			})
 		},
 		onLoad() {
 

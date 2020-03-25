@@ -63,6 +63,7 @@
 <script>
 	import LoginOther from '@/components/login/login-other.vue'
 	import $http from '@/common/api/request.js'
+	import {mapMutations} from 'vuex'
 	export default {
 		components: {
 			LoginOther
@@ -86,6 +87,7 @@
 			}
 		},
 		methods: {
+			...mapMutations(['login']),
 			//点击登录
 			submit() {
 				if (!this.validate('userName')) return;
@@ -102,22 +104,25 @@
 						userPwd:this.userPwd
 					}
 				}).then((res) => {
+					console.log(res)
 					uni.showToast({
 						title:res.msg,
 						icon:'none'
 					})
-				}).catch(() => {
-					uni.showToast({
-						title: '请求失败',
-						icon: 'none'
-					})
+					this.login(res.data)
 				})
-				// setTimeout(() => {
-				// 	uni.hideLoading();
-				// 	uni.navigateBack({
-				// 		delta: 1
+				// .catch(() => {
+				// 	uni.showToast({
+				// 		title: '请求失败',
+				// 		icon: 'none'
 				// 	})
-				// }, 2000)
+				// })
+				setTimeout(() => {
+					uni.hideLoading();
+					uni.navigateBack({
+						delta: 1
+					})
+				}, 2000)
 			},
 			//判断验证是否符合要求
 			validate(key) {
@@ -142,7 +147,7 @@
 				uni.navigateTo({
 					url:'../login-tel/login-tel'
 				})
-			}
+			},
 		}
 	}
 </script>
