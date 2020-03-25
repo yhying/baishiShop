@@ -11,7 +11,7 @@
 							<view class='logo'>
 								<image class='logo-img' src="../../static/img/logo.jpg" mode=""></image>
 							</view>
-							<view class='tel'>手机号注册</view>
+							<view class='tel' @tap="goTelphone()">手机号注册</view>
 							<LoginOther></LoginOther>
 							<view class='login-go' @tap="gobottom()">
 								<view>已有账号，去登录</view>
@@ -118,6 +118,11 @@
 			ClosePage() {
 				uni.navigateBack({
 					delta: 1
+				})
+			},
+			goTelphone(){
+				uni.navigateTo({
+					url:'../login-tel/login-tel'
 				})
 			}
 		}
