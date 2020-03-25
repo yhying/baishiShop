@@ -234,6 +234,17 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/login-code/login-code",
+            "style" : {
+            	"navigationBarTitleText": "输入验证码",
+            	"app-plus": {
+            		"scrollIndicator": "none",
+            		"titleNView": {
+            		}
+            	}
+            }
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

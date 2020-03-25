@@ -35,17 +35,10 @@
 		},
 		methods: {
 			goNextCode(){
-				if(!this.validate('userTel')) return;
-				uni.showLoading({
-					title: "登录中..."
-				})
-				
-				setTimeout(() => {
-					uni.hideLoading();
-					uni.navigateBack({
-						delta: 1
+				if(!this.validate('userTel')) return;				
+					uni.navigateTo({
+						url:'../login-code/login-code'
 					})
-				}, 2000)
 			},
 			// 验证方法
 			validate(key){

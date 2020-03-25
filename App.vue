@@ -49,4 +49,7 @@
 	uni-page-head .uni-page-head-ft {
 		padding-right: 30rpx;
 	}
+	.uni-input-placeholder {
+		font-size: 28rpx;
+		}
 </style>
