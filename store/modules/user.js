@@ -23,6 +23,13 @@ export default {
 			state.loginStatus=true,
 			state.token=payload.token
 			uni.setStorageSync('userInfo',JSON.stringify(payload))
+		},
+		// 退出登录
+		loginOut(state){
+			state.loginStatus=false
+			state.userInfo={}
+			state.token=null
+			uni.removeStorageSync('userInfo');
 		}
 	}
 }
