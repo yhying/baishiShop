@@ -1,15 +1,56 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../db/Sql.js')
-
+var user = require('../db/user.js');
 // 跨域解决
-router.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  //Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Methods', '*');
-  res.header('Content-Type', 'application/json;charset=utf-8');
-  next();
+router.all('*', function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	//Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Methods', '*');
+	res.header('Content-Type', 'application/json;charset=utf-8');
+	next();
+});
+// 登录接口
+//用户登录
+router.post('/api/login', function(req, res, next) {
+	//前端给后端的数据
+	let params = {
+		userName: req.body.userName,
+		userPwd: req.body.userPwd
+	}
+	//查询用户名或者手机号存在不存在
+	connection.query(user.queryUserName(params), function(error, results, fields) {
+		if (results.length > 0) {
+			connection.query(user.queryUserPwd(params), function(err, result) {
+				// console.log(result)
+				console.log(result.length)
+				if (result.length > 0) {
+					res.send({
+						data: {
+							success: true,
+							msg: "登录成功",
+							data: result[0]
+						}
+					})
+				} else {
+					res.send({
+						data: {
+							success: false,
+							msg: "密码不正确"
+						}
+					})
+				}
+			})
+		} else {
+			res.send({
+				data: {
+					success: false,
+					msg: "用户名或手机号不存在"
+				}
+			})
+		}
+	})
 });
 /* GET home page. 首页推荐模板数据*/
 router.get('/api/index/data', function(req, res, next) {
@@ -2246,14 +2287,14 @@ router.get('/api/goods/list', function(req, res, next) {
 
 // 详情数据接口
 router.get('/api/goods/id', function(req, res, next) {
-  let id = req.query.id;
-  connection.query("select * from goods_search where id="+id+"", function (error, results, fields) {
-    if (error) throw error;
-    res.send({
-  	  code:"0",
-  	  data:results
-    })
-  });
+	let id = req.query.id;
+	connection.query("select * from goods_search where id=" + id + "", function(error, results, fields) {
+		if (error) throw error;
+		res.send({
+			code: "0",
+			data: results
+		})
+	});
 });
 
 module.exports = router;
