@@ -42,7 +42,9 @@
 		methods: {
 			changeTab(path) {
 				if (path === 'car' || path === 'my') {
-
+					this.LoginInterCeptor({
+						url: `../../pages/${path}/${path}`
+					})
 				} else {
 					uni.redirectTo({
 						// url: '../../pages/' + path + '/' + path

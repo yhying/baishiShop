@@ -104,25 +104,21 @@
 						userPwd:this.userPwd
 					}
 				}).then((res) => {
-					console.log(res)
+					// console.log(res.success)
 					uni.showToast({
 						title:res.msg,
 						icon:'none'
 					})
 					this.login(res.data)
+					if(res.success){
+						setTimeout(() => {
+							uni.hideLoading();
+							uni.navigateBack({
+								delta: 1
+							})
+						}, 2000)
+					}
 				})
-				// .catch(() => {
-				// 	uni.showToast({
-				// 		title: '请求失败',
-				// 		icon: 'none'
-				// 	})
-				// })
-				setTimeout(() => {
-					uni.hideLoading();
-					uni.navigateBack({
-						delta: 1
-					})
-				}, 2000)
 			},
 			//判断验证是否符合要求
 			validate(key) {
