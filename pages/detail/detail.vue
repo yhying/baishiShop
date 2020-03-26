@@ -170,7 +170,7 @@
 				},200)
 			},
 			goShopCar(){
-				uni.switchTab({
+				uni.redirectTo({
 					url:'../car/car'
 				})
 			},

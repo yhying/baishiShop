@@ -49,7 +49,7 @@
 				},1000)
 			},
 			goIndex(){
-				uni.switchTab({
+				uni.redirectTo({
 					url:'../index/index'
 				})
 			}

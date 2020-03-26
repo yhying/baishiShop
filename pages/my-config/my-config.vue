@@ -50,7 +50,7 @@
 				})
 				this.loginOut()
 				setTimeout(()=>{
-					uni.switchTab({
+					uni.redirectTo({
 						url:'../index/index'
 					})
 				},2000)

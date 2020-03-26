@@ -47,7 +47,7 @@
 		},
 		// 监听左上角默认返回功能
 		onBackPress(event){
-			uni.switchTab({
+			uni.redirectTo({
 				url: '../index/index'
 			})
 			return true;

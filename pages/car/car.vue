@@ -49,11 +49,13 @@
 				<view class="shop-buy" @click="goSearch()">马上去逛逛</view>
 			</view>
 		</template>
+		<TabBar currentpage="car"></TabBar>
 	</view>
 </template>
 
 <script>
 	import uniNavBar from '@/components/uni/uni-nav-bar/uni-nav-bar.vue'
+		import TabBar from '@/components/common/TabBar.vue'
 	import UniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
 	import {
 		mapState,
@@ -64,7 +66,8 @@
 	export default {
 		components: {
 			uniNavBar,
-			UniNumberBox
+			UniNumberBox,
+			TabBar
 		},
 		data() {
 			return {
@@ -84,7 +87,7 @@
 			...mapMutations(['ClickRadio']),
 			// 跳转分类页面
 			goSearch() {
-				uni.switchTab({
+				uni.redirectTo({
 					url: '../category/category'
 				})
 			},

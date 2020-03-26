@@ -101,7 +101,7 @@
 				this.currentIndex = index
 			},
 			goIndex() {
-				uni.switchTab({
+				uni.redirectTo({
 					url: '../index/index'
 				})
 			}

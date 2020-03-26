@@ -53,11 +53,13 @@
 				<!-- </view> -->
 			</swiper-item>
 		</swiper>
+		<TabBar currentpage="index"></TabBar>
 	</view>
 </template>
 
 <script>
 	import uniNavBar from '@/components/uni/uni-nav-bar/uni-nav-bar.vue'
+	import TabBar from '@/components/common/TabBar.vue'
 	import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 	import $http from '@/common/api/request.js'
 	import Swiper from '@/components/index/indexSwiper.vue'
@@ -71,6 +73,7 @@
 	export default {
 		components: {
 			uniNavBar,
+			TabBar,
 			Swiper,
 			Recommend,
 			Card,
@@ -105,7 +108,7 @@
 			// 获取系统高度
 			uni.getSystemInfo({
 				success: (res) => {
-					this.ClientHeight = res.windowHeight - uni.upx2px(80) - this.getClientHeight()
+					this.ClientHeight = res.windowHeight - uni.upx2px(200) - this.getClientHeight()
 				}
 			})
 		},

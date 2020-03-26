@@ -23,15 +23,18 @@
 				</view>
 			</scroll-view>
 		</view>
+		<TabBar currentpage="category"></TabBar>
 	</view>
 </template>
 
 <script>
+	import TabBar from '@/components/common/TabBar.vue'
 	import Lines from '@/components/common/Line.vue'
 	import $http from '@/common/api/request.js'
 	export default {
 		components: {
-			Lines
+			Lines,
+			TabBar
 		},
 		data() {
 			return {
