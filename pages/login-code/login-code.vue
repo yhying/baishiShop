@@ -18,6 +18,7 @@
 
 <script>
 	import Lines from '@/components/common/Line.vue'
+		import $http from '@/common/api/request.js'
 	export default {
 		components: {
 			Lines
@@ -27,8 +28,13 @@
 				codeNum: 60,
 				codemsg: '重新发送',
 				disabled: false,
-				userCode:''
+				userCode:'',
+				// 注册手机号
+				phone:''
 			}
+		},
+		onLoad(e) {
+			this.phone=e.phone
 		},
 		onReady() {
 			this.codemsg='重新发送('+this.codeNum+')'
@@ -36,6 +42,15 @@
 		},
 		methods: {
 			FreshCode(){
+				$http.request({
+					url: '/code',
+					method: 'POST',
+					data: {
+						phone: this.phone
+					}
+				}).then((res) => {
+					console.log(res)
+				})
 				this.disabled=true
 				let timer=setInterval(()=>{
 					--this.codeNum

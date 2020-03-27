@@ -31,7 +31,7 @@
 						rule: /^1[3456789]\d{9}$/,
 						msg: "请输入11位手机号"
 					}
-				}
+				},
 			}
 		},
 		methods: {
@@ -46,7 +46,7 @@
 				}).then((res) => {
 					if (res.success) {
 						return uni.navigateTo({
-							url: '../login-code/login-code'
+							url: '../login-code/login-code?phone='+this.userTel
 						})
 					}
 					uni.showToast({
