@@ -11,7 +11,7 @@ var User = {
 	},
 	//增加一条用户数据
 	insertData(param) {
-		return 'insert into user (userName,userPwd,phone,imgUrl,nickName,token) values ("","","","","","")';
+		return 'insert into user (userName,userPwd,phone,imgUrl,rolesName,token) values ("","123456","'+param.phone+'","../../static/header/one.png","默认昵称","")';
 	}
 }
 

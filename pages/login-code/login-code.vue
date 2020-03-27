@@ -19,6 +19,7 @@
 <script>
 	import Lines from '@/components/common/Line.vue'
 		import $http from '@/common/api/request.js'
+			import {mapMutations} from 'vuex'
 	export default {
 		components: {
 			Lines
@@ -28,9 +29,13 @@
 				codeNum: 60,
 				codemsg: '重新发送',
 				disabled: false,
+				// 输入的验证码
 				userCode:'',
 				// 注册手机号
-				phone:''
+				phone:'',
+				// 获取的验证码
+				getCode:''
+				
 			}
 		},
 		onLoad(e) {
@@ -41,6 +46,7 @@
 			this.FreshCode()
 		},
 		methods: {
+		    ...mapMutations(['login']),
 			FreshCode(){
 				$http.request({
 					url: '/code',
@@ -50,6 +56,7 @@
 					}
 				}).then((res) => {
 					console.log(res)
+					this.getCode=res.code
 				})
 				this.disabled=true
 				let timer=setInterval(()=>{
@@ -64,9 +71,36 @@
 				},1000)
 			},
 			goIndex(){
-				uni.redirectTo({
-					url:'../index/index'
-				})
+				if(this.getCode==this.userCode){
+					// 添加账号到数据库
+					$http.request({
+						url: '/addUser',
+						method: 'POST',
+						data: {
+							phone: this.phone,
+							userCode:this.userCode
+						}
+					}).then((res) => {
+						console.log(res)
+						if(res.success){
+							uni.showToast({
+								title:'注册成功',
+								icon:'none'
+							})
+							this.login(res.data)
+							setTimeout(()=>{
+								uni.redirectTo({
+									url:'../index/index'
+								})
+							},2000)
+						}
+					})
+				}else{
+					uni.showToast({
+						title:'验证码错误',
+						icon:'none'
+					})
+				}
 			}
 		}
 	}
