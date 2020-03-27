@@ -11,7 +11,12 @@ var User = {
 	},
 	//增加一条用户数据
 	insertData(param) {
-		return 'insert into user (userName,userPwd,phone,imgUrl,rolesName,token) values ("","123456","'+param.phone+'","../../static/header/one.png","默认昵称","")';
+		// 安装token包
+		const jwt=require('jsonwebtoken')
+		let payload={user:param.phone} /* 用户注册号码*/
+		let secret="tainwanggaidihu"  /* 口令*/
+		let token=jwt.sign(payload,secret)
+		return 'insert into user (userName,userPwd,phone,imgUrl,rolesName,token) values ("","123456","'+param.phone+'","../../static/header/one.png","默认昵称","'+token+'")';
 	}
 }
 
