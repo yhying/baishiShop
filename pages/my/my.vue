@@ -3,7 +3,7 @@
 		<!--头部-->
 		<view class='my-header'>
 			<view class='header-main'>
-				<view class='header-logo' @tap="loginUser()">
+				<view class='header-logo'>
 					<image class='logo-img' :src="loginStatus?userInfo.imgUrl:'../../static/header/one.png'" mode=""></image>
 					<view class='logo-name'>{{loginStatus?userInfo.rolesName:'用户昵称'}}</view>
 				</view>
@@ -101,11 +101,6 @@
 				uni.navigateTo({
 					url:'../my-order/my-order'
 				})
-			},
-			loginUser(){
-				uni.navigateTo({
-					url:'../login/login'
-				})
 			}
 		}
 	}
@@ -120,6 +115,7 @@
 		background: url(../../static/img/mybg.png) no-repeat;
 		width: 100%;
 		height: 400rpx;
+		background-size: cover;
 	}
 
 	.header-main {

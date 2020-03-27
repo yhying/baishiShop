@@ -43,12 +43,17 @@
 			changeTab(path) {
 				if (path === 'car' || path === 'my') {
 					this.LoginInterCeptor({
-						url: `../../pages/${path}/${path}`
+						url: `../../pages/${path}/${path}`,
+						animationDuration:1000,
+						animationType:'fade-in'
+						
 					})
 				} else {
 					uni.redirectTo({
 						// url: '../../pages/' + path + '/' + path
-						url: `../../pages/${path}/${path}`
+						url: `../../pages/${path}/${path}`,
+						animationDuration:1000,
+						animationType:'fade-in'
 					})
 				}
 			}
