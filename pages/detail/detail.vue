@@ -16,13 +16,23 @@
 		</view>
 		<!--商品详情图-->
 		<view>
-			<view><image class='details-img' src="../../static/img/detail1.jpg" mode=""></image></view>
-			<view><image class='details-img' src="../../static/img/detail2.jpg" mode=""></image></view>
-			<view><image class='details-img' src="../../static/img/detail3.jpg" mode=""></image></view>
-			<view><image class='details-img' src="../../static/img/detail4.jpg" mode=""></image></view>
-			<view><image class='details-img' src="../../static/img/detail5.jpg" mode=""></image></view>
+			<view>
+				<image class='details-img' src="../../static/img/detail1.jpg" mode=""></image>
+			</view>
+			<view>
+				<image class='details-img' src="../../static/img/detail2.jpg" mode=""></image>
+			</view>
+			<view>
+				<image class='details-img' src="../../static/img/detail3.jpg" mode=""></image>
+			</view>
+			<view>
+				<image class='details-img' src="../../static/img/detail4.jpg" mode=""></image>
+			</view>
+			<view>
+				<image class='details-img' src="../../static/img/detail5.jpg" mode=""></image>
+			</view>
 		</view>
-		
+
 		<Card cardTitle='看了又看'></Card>
 		<CommodityList :dataList='dataList'></CommodityList>
 		<!--底部-->
@@ -36,7 +46,7 @@
 				<view class='purchase' @tap='showPop'>立即购买</view>
 			</view>
 		</view>
-		
+
 		<!--底部弹出层-->
 		<view class="pop" v-show='isShow' @touchmove.stop.prevent=''>
 			<!--蒙层-->
@@ -48,11 +58,7 @@
 				</view>
 				<view class='pop-num'>
 					<view>购买数量</view>
-					<UniNumberBox 
-						:min='1'
-						:value='num'
-						@change="changeNum"
-					></UniNumberBox>
+					<UniNumberBox :min='1' :value='num' @change="changeNum"></UniNumberBox>
 				</view>
 				<view class='pop-sub' @tap="addCar()">
 					确定
@@ -65,58 +71,64 @@
 <script>
 	import Card from '@/components/common/Card.vue'
 	import CommodityList from '@/components/common/GoodList.vue'
-		import UniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
-		import $http from '@/common/api/request.js'
-		import {mapMutations} from 'vuex'
+	import UniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
+	import $http from '@/common/api/request.js'
+	import {
+		mapMutations
+	} from 'vuex'
 	export default {
-		components:{
+		components: {
 			Card,
 			CommodityList,
 			UniNumberBox
 		},
 		data() {
 			return {
-			    isShow:false,
-				num:1,
-				animationData:{},
-				goodsContent:{},
-				swiperList:[
-					{imgUrl:"../../static/img/details1.jpeg"},
-					{imgUrl:"../../static/img/details2.jpeg"},
-					{imgUrl:"../../static/img/details3.jpeg"}
+				isShow: false,
+				num: 1,
+				animationData: {},
+				goodsContent: {},
+				swiperList: [{
+						imgUrl: "../../static/img/details1.jpeg"
+					},
+					{
+						imgUrl: "../../static/img/details2.jpeg"
+					},
+					{
+						imgUrl: "../../static/img/details3.jpeg"
+					}
 				],
-				dataList:[
-					{
-						id:1,
-						imgUrl:"../../static/img/commodity1.jpg",
-						name:"大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice:"299",
-						oprice:"659",
-						discount:"5.2"
+				dataList: [{
+						id: 1,
+						imgUrl: "../../static/img/commodity1.jpg",
+						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
+						pprice: "299",
+						oprice: "659",
+						discount: "5.2"
 					},
 					{
-						id:2,
-						imgUrl:"../../static/img/commodity2.jpg",
-						name:"大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice:"299",
-						oprice:"659",
-						discount:"5.2"
+						id: 2,
+						imgUrl: "../../static/img/commodity2.jpg",
+						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
+						pprice: "299",
+						oprice: "659",
+						discount: "5.2"
 					},
 					{
-						id:3,
-						imgUrl:"../../static/img/commodity3.jpg",
-						name:"大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice:"299",
-						oprice:"659",
-						discount:"5.2"
+						id: 3,
+						imgUrl: "../../static/img/commodity3.jpg",
+						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
+						pprice: "299",
+						oprice: "659",
+						discount: "5.2"
 					},
 					{
-						id:4,
-						imgUrl:"../../static/img/commodity4.jpg",
-						name:"大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
-						pprice:"299",
-						oprice:"659",
-						discount:"5.2"
+						id: 4,
+						imgUrl: "../../static/img/commodity4.jpg",
+						name: "大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008大姨绒毛大款2020年必须买,不买你就不行了,爆款疯狂GG008",
+						pprice: "299",
+						oprice: "659",
+						discount: "5.2"
 					}
 				]
 			}
@@ -125,8 +137,8 @@
 			this.getdetailData(e.id)
 		},
 		// 监听左上角默认返回功能
-		onBackPress(event){
-			if(this.isShow){
+		onBackPress(event) {
+			if (this.isShow) {
 				this.hidePop()
 				return true;
 			}
@@ -134,80 +146,89 @@
 		//点击分享 不支持h5
 		onNavigationBarButtonTap(e) {
 			console.log(e)
-			if(e.type==='share'){
+			if (e.type === 'share') {
 				uni.share({
-					"provider":"weixin",
-					"type":0,
-					"scene":"WXSceneSession",
-					"title":this.goodsContent.name,
-					"href":"http://192.168.8.6:8080/#/pages/details/details?id="+this.goodsContent.id+"",
-					imageUrl:this.goodsContent.imgUrl,
-					success: function (res) {
+					"provider": "weixin",
+					"type": 0,
+					"scene": "WXSceneSession",
+					"title": this.goodsContent.name,
+					"href": "http://192.168.8.6:8080/#/pages/details/details?id=" + this.goodsContent.id + "",
+					imageUrl: this.goodsContent.imgUrl,
+					success: function(res) {
 						uni.showTabBar({
-							title:"分享成功"
+							title: "分享成功"
 						})
 					},
-					fail: function (err) {
+					fail: function(err) {
 						console.log("fail:" + JSON.stringify(err));
 					}
-					
+
 				})
 			}
 		},
 		methods: {
 			...mapMutations(['ShopCar']),
 			//点击购买
-			showPop(){
+			showPop() {
 				var animation = uni.createAnimation({
-				   duration: 200
+					duration: 200
 				})
 				animation.translateY(600).step();
 				this.animationData = animation.export();
 				this.isShow = true;
-				setTimeout(()=>{
+				setTimeout(() => {
 					animation.translateY(0).step();
 					this.animationData = animation.export();
-				},200)
+				}, 200)
 			},
-			goShopCar(){
+			goShopCar() {
 				uni.redirectTo({
-					url:'../car/car'
+					url: '../car/car'
 				})
 			},
-			changeNum(value){
-				this.num=value
+			changeNum(value) {
+				this.num = value
 			},
 			// 加入购物车
-			addCar(){
-				let goods=this.goodsContent
-				this.goodsContent['checked']=false
-				this.goodsContent['num']=this.num
-				this.ShopCar(goods)
-				this.hidePop()
-				uni.showToast({
-					title:'加入购物车成功',
-					icon:'none'
+			addCar() {
+				$http.request({
+					url: '/islogin',
+					method: 'POST',
+					header: {
+						token: true
+					}
+				}).then(res => {
+					console.log(res)
+					let goods=this.goodsContent
+					this.goodsContent['checked']=false
+					this.goodsContent['num']=this.num
+					this.ShopCar(goods)
+					this.hidePop()
+					uni.showToast({
+						title:'加入购物车成功',
+						icon:'none'
+					})
 				})
 			},
 			// 点击蒙层关闭
-			hidePop(){
+			hidePop() {
 				var animation = uni.createAnimation({
-				   duration: 200
+					duration: 200
 				})
 				animation.translateY(600).step();
 				this.animationData = animation.export();
-				this.isShow =true;
-				setTimeout(()=>{
+				this.isShow = true;
+				setTimeout(() => {
 					animation.translateY(0).step();
 					this.animationData = animation.export();
 					this.isShow = false;
-				},200)
+				}, 200)
 			},
-			getdetailData(id){
+			getdetailData(id) {
 				$http.request({
 					url: '/goods/id',
-					data:{
-						id:id
+					data: {
+						id: id
 					}
 				}).then((res) => {
 					this.goodsContent = res[0];
@@ -218,107 +239,122 @@
 					})
 				})
 			}
-			
+
 		}
 	}
 </script>
 
 <style scoped>
-.details{
-	padding-bottom: 110rpx;
-}
-swiper{
-	width: 100%;
-	height: 700rpx;
-}
-.swiper-img{
-	width: 100%;
-	height: 700rpx;
-}
-.details-goods{
-	text-align: center;
-	font-weight: bold;
-	font-size:36rpx;
-	padding:10rpx 0;
-}
-.details-img{
-	width: 100%;
-}
-.details-foot{
-	position: fixed;
-	left:0;
-	bottom: 0;
-	width:100%;
-	height: 110rpx;
-	display: flex;
-	align-items: center;
-	justify-content:space-around;
-	background-color: #FFFFFF;
-	font-size: 28rpx;
-}
-.details-foot .iconfont{
-	width:75rpx;
-	height: 75rpx;
-	line-height: 75rpx;
-	border-radius: 100%;
-	background-color: #000000;
-	color:#FFFFFF;
-	text-align: center;
-	margin:0 10rpx;
-}
-.details-foot>view {
-	display: flex;
-}
-.add-shopcart{
-	margin:0 20rpx 0 60rpx;
-	padding:15rpx 30rpx;
-	background-color: #000000;
-	color:#FFFFFF;
-	border-radius: 40rpx;
-}
-.purchase{
-	/* margin:0 20rpx; */
-	padding:15rpx 30rpx;
-	background-color: #49BDFB;
-	color:#FFFFFF;
-	border-radius: 40rpx;
-}
-.pop{
-	position: fixed;
-	left:0;
-	top:0;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-}
-.pop-mask{
-	position: absolute;
-	left:0;
-	top:0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.3);
-}
-.pop-box{
-	position: absolute;
-	left:0;
-	bottom:0;
-	width: 100%;
-	background-color: #FFFFFF;
-}
-.pop-img{
-	width: 260rpx;
-	height: 260rpx;
-}
-.pop-num{
-	padding:20rpx;
-	display: flex;
-	justify-content: space-between;
-}
-.pop-sub{
-	line-height: 80rpx;
-	background-color: #49BDFB;
-	color:#FFFFFF;
-	text-align: center;
-}
+	.details {
+		padding-bottom: 110rpx;
+	}
+
+	swiper {
+		width: 100%;
+		height: 700rpx;
+	}
+
+	.swiper-img {
+		width: 100%;
+		height: 700rpx;
+	}
+
+	.details-goods {
+		text-align: center;
+		font-weight: bold;
+		font-size: 36rpx;
+		padding: 10rpx 0;
+	}
+
+	.details-img {
+		width: 100%;
+	}
+
+	.details-foot {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 110rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		background-color: #FFFFFF;
+		font-size: 28rpx;
+	}
+
+	.details-foot .iconfont {
+		width: 75rpx;
+		height: 75rpx;
+		line-height: 75rpx;
+		border-radius: 100%;
+		background-color: #000000;
+		color: #FFFFFF;
+		text-align: center;
+		margin: 0 10rpx;
+	}
+
+	.details-foot>view {
+		display: flex;
+	}
+
+	.add-shopcart {
+		margin: 0 20rpx 0 60rpx;
+		padding: 15rpx 30rpx;
+		background-color: #000000;
+		color: #FFFFFF;
+		border-radius: 40rpx;
+	}
+
+	.purchase {
+		/* margin:0 20rpx; */
+		padding: 15rpx 30rpx;
+		background-color: #49BDFB;
+		color: #FFFFFF;
+		border-radius: 40rpx;
+	}
+
+	.pop {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 9999;
+	}
+
+	.pop-mask {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+
+	.pop-box {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		background-color: #FFFFFF;
+	}
+
+	.pop-img {
+		width: 260rpx;
+		height: 260rpx;
+	}
+
+	.pop-num {
+		padding: 20rpx;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.pop-sub {
+		line-height: 80rpx;
+		background-color: #49BDFB;
+		color: #FFFFFF;
+		text-align: center;
+	}
 </style>

@@ -10,7 +10,7 @@ var QcloudSms = require("qcloudsms_js");
 router.all('*', function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	//Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
-	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Headers', 'Content-Type,token');  /* 自定义header，拼接*/
 	res.header('Access-Control-Allow-Methods', '*');
 	res.header('Content-Type', 'application/json;charset=utf-8');
 	next();
@@ -77,6 +77,7 @@ router.post('/api/code', function(req, res, next) {
 	ssender.sendWithParam("86", phoneNumbers[0], templateId,
 		paramss, smsSign, "", "", callback);
 });
+// 注册用户
 router.post('/api/addUser', function(req, res, next) {
 	let params = {
 		phone: req.body.phone,
@@ -85,21 +86,30 @@ router.post('/api/addUser', function(req, res, next) {
 	if (params.userCode == code) {
 		connection.query(user.insertData(params), function(error, results, fields) {
 			res.send({
-				data:{
-					success:true,
-					msg:"注册成功",
-					data:{
-						userName:'',
-						userPwd:123456,
-						phone:params.phone,
-						imgUrl:'../../static/header/one.png',
-						rolesName:"默认昵称",
-						token:null
+				data: {
+					success: true,
+					msg: "注册成功",
+					data: {
+						userName: '',
+						userPwd: 123456,
+						phone: params.phone,
+						imgUrl: '../../static/header/one.png',
+						rolesName: "默认昵称",
+						token: null
 					}
 				}
 			})
 		})
 	}
+})
+// 判断用户是否登录
+router.post('/api/islogin', function(req, res, next) {
+	res.send({
+		data: {
+			success: true,
+			msg: "判断是否登录"
+		}
+	})
 })
 //用户登录
 router.post('/api/login', function(req, res, next) {
