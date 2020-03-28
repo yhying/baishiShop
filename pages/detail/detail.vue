@@ -200,10 +200,10 @@
 				// }).then(res => {
 				// console.log(res)
 				let goods = this.goodsContent
-				this.goodsContent['checked'] = false
+				this.goodsContent['checked'] = true
 				this.goodsContent['num'] = this.num
-				// this.ShopCar(goods)
-				console.log(this.goods)
+				this.ShopCar(goods)
+				console.log(goods)
 				this.hidePop()
 				uni.showToast({
 					title: '加入购物车成功',

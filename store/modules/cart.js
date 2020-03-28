@@ -1,4 +1,4 @@
-const carlist=JSON.parse(localStorage.getItem('carlist') || '[]')
+const carlist = JSON.parse(localStorage.getItem('carlist') || '[]')
 export default {
 	state: {
 		carlist: carlist,
@@ -64,8 +64,16 @@ export default {
 			})
 		},
 		ShopCar(state, goods) {
-			state.carlist.push(goods)
-            localStorage.setItem('carlist', JSON.stringify(state.carlist))
+			// 查找之前购物车中是否已经存在商品
+			let oldProduct = state.carlist.find(item => {
+				return item.id === goods.id
+			})
+			if (oldProduct) {
+				oldProduct.num += 1
+			} else {
+				state.carlist.push(goods)
+			}
+			localStorage.setItem('carlist', JSON.stringify(state.carlist))
 		}
 	},
 	actions: {
