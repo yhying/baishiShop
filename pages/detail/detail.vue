@@ -191,24 +191,25 @@
 			},
 			// 加入购物车
 			addCar() {
-				$http.request({
-					url: '/islogin',
-					method: 'POST',
-					header: {
-						token: true
-					}
-				}).then(res => {
-					console.log(res)
-					let goods=this.goodsContent
-					this.goodsContent['checked']=false
-					this.goodsContent['num']=this.num
-					this.ShopCar(goods)
-					this.hidePop()
-					uni.showToast({
-						title:'加入购物车成功',
-						icon:'none'
-					})
+				// $http.request({
+				// 	url: '/islogin',
+				// 	method: 'POST',
+				// 	header: {
+				// 		token: true
+				// 	}
+				// }).then(res => {
+				// console.log(res)
+				let goods = this.goodsContent
+				this.goodsContent['checked'] = false
+				this.goodsContent['num'] = this.num
+				// this.ShopCar(goods)
+				console.log(this.goods)
+				this.hidePop()
+				uni.showToast({
+					title: '加入购物车成功',
+					icon: 'none'
 				})
+				// })
 			},
 			// 点击蒙层关闭
 			hidePop() {
