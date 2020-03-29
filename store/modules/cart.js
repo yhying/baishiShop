@@ -5,50 +5,23 @@ export default {
 		selectedList: []
 	},
 	getters: {
-		checkdAll(state) {
-			return state.carlist.length === state.selectedList.length
-		},
 		totalCount(state) {
 			let total = {
 				pprice: 0,
 				count: 0
 			}
 			state.carlist.forEach(item => {
-				if (state.selectedList.indexOf(item.id) > -1) {
+				if (item.checked) {
 					total.pprice += item.pprice * item.num
-					total.count = state.selectedList.length
 				}
 			})
+			total.count = state.carlist.filter(item =>item.checked).length
 			return total
 		}
 	},
 	mutations: {
-		checkAll(state) {
-			state.selectedList = state.carlist.map(item => {
-				item.checked = true
-				return item.id
-			})
-		},
-		uncheckAll(state) {
-			state.carlist.forEach(item => {
-				item.checked = false;
-			})
-			state.selectedList = [];
-		},
-		ClickRadio(state, item) {
-			console.log(item.id)
-			let id = item.id
-			let i = state.selectedList.indexOf(id)
-			if (i > -1) {
-				item.checked = false
-				state.selectedList.splice(i, 1)
-			} else {
-				item.checked = true
-				state.selectedList.push(id)
-			}
-		},
-		delete(state) {
-			if (state.selectedList.length === 0) {
+		delete(state,getters) {
+			if (getters.totalCount.count === 0) {
 				uni.showToast({
 					title: '请选择需要删除的商品',
 					icon: 'none'
@@ -74,21 +47,20 @@ export default {
 				state.carlist.push(goods)
 			}
 			localStorage.setItem('carlist', JSON.stringify(state.carlist))
+		},
+		clearShopCar(state){
+			state.carlist=state.carlist.filter(item=>{
+				return !item.checked
+			})
+			localStorage.setItem('carlist', JSON.stringify(state.carlist))
 		}
 	},
 	actions: {
-		checkAllFn({
+		deleteGoods({
 			commit,
 			getters
 		}) {
-			getters.checkdAll ? commit('uncheckAll') : commit('checkAll')
-		},
-		deleteGoods({
-			commit,
-			state
-		}) {
-			commit('delete')
-			commit('uncheckAll')
+			commit('delete',getters)
 		}
 	}
 

@@ -6,7 +6,7 @@
 			<!--商品内容-->
 			<view class='shop-list'>
 				<view class='shop-item' v-for='(item,index) in carlist' :key='index'>
-					<label class="radio" @tap="ClickRadio(item)">
+					<label class="radio" @tap="clickRadio(item)">
 						<radio value="" color="#FF3333" :checked="item.checked" /><text></text>
 					</label>
 					<image class='shop-img' :src="item.imgUrl" mode=""></image>
@@ -55,7 +55,7 @@
 
 <script>
 	import uniNavBar from '@/components/uni/uni-nav-bar/uni-nav-bar.vue'
-		import TabBar from '@/components/common/TabBar.vue'
+	import TabBar from '@/components/common/TabBar.vue'
 	import UniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
 	import {
 		mapState,
@@ -75,16 +75,23 @@
 			}
 		},
 		computed: {
-			...mapGetters(['checkdAll', 'totalCount']),
+			...mapGetters(['totalCount']),
 			...mapState({
-				carlist: state => state.cart.carlist, /*, 对象语法,映射 */
+				carlist: state => state.cart.carlist,
+				/*, 对象语法,映射 */
 				selectedList: state => state.cart.selectedList
-			})
+			}),
+			// 判断全选
+			checkdAll() {
+				// return !(this.carlist.filter(item => !item.checked).length)
+				return !this.carlist.find(item => !item.checked)
+			}
+
 		},
 		onLoad() {},
 		methods: {
-			...mapActions(['checkAllFn', 'deleteGoods']),
-			...mapMutations(['ClickRadio']),
+			...mapActions(['deleteGoods']),
+			...mapMutations(['clearShopCar']),
 			// 跳转分类页面
 			goSearch() {
 				uni.redirectTo({
@@ -95,16 +102,35 @@
 				this.carlist[index].num = e
 			},
 			confirmOrder() {
-				if(this.selectedList.length>0){
+				if (this.totalCount.count > 0) {
 					uni.navigateTo({
 						url: '../confrim-order/confrim-order'
 					})
+					this.clearShopCar()
 					return;
 				}
 				uni.showToast({
 					title: "请选择要购买的商品",
 					icon: 'none'
 				})
+			},
+			// 点击单选
+			clickRadio(item) {
+				console.log(item,"单选")
+				item.checked = !item.checked
+			},
+			// 点击全选
+			checkAllFn(){
+				console.log('全选')
+				if(this.checkdAll){
+					this.carlist.map(item=>{
+						return item.checked=false
+					})
+				}else {
+					this.carlist.map(item=>{
+						return item.checked=true
+					})
+				}
 			}
 		}
 	}
@@ -112,7 +138,7 @@
 
 <style scoped>
 	.shop-list {
-		padding-bottom: 100rpx;
+		padding-bottom: 120rpx;
 	}
 
 	.shop-item {
@@ -150,7 +176,7 @@
 		border-top: 2rpx solid #F7F7F7;
 		background-color: #FFFFFF;
 		position: fixed;
-		bottom: 100rpx;
+		bottom: 120rpx;
 		left: 0;
 		width: 100%;
 		height: 100rpx;
